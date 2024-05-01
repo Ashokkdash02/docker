@@ -1,0 +1,2130 @@
+root@ip-172-31-40-23:~# systemctl.staus doc
+systemctl.staus: command not found
+root@ip-172-31-40-23:~# systemctl.staus docker
+systemctl.staus: command not found
+root@ip-172-31-40-23:~# systemctl status docker
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled; preset: enabled)
+     Active: active (running) since Mon 2024-04-29 06:19:43 UTC; 1min 19s ago
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 3312 (dockerd)
+      Tasks: 9
+     Memory: 27.8M (peak: 28.6M)
+        CPU: 339ms
+     CGroup: /system.slice/docker.service
+             └─3312 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+Apr 29 06:19:42 ip-172-31-40-23 systemd[1]: Starting docker.service - Docker Application Container Engine...
+Apr 29 06:19:42 ip-172-31-40-23 dockerd[3312]: time="2024-04-29T06:19:42.674794533Z" level=info msg="Starting up"
+Apr 29 06:19:42 ip-172-31-40-23 dockerd[3312]: time="2024-04-29T06:19:42.676405365Z" level=info msg="detected 127.0.0.53 nameserver, assuming systemd-resolv>
+Apr 29 06:19:42 ip-172-31-40-23 dockerd[3312]: time="2024-04-29T06:19:42.835662509Z" level=info msg="Loading containers: start."
+Apr 29 06:19:43 ip-172-31-40-23 dockerd[3312]: time="2024-04-29T06:19:43.269981735Z" level=info msg="Loading containers: done."
+Apr 29 06:19:43 ip-172-31-40-23 dockerd[3312]: time="2024-04-29T06:19:43.291747934Z" level=info msg="Docker daemon" commit=c8af8eb containerd-snapshotter=fa>
+Apr 29 06:19:43 ip-172-31-40-23 dockerd[3312]: time="2024-04-29T06:19:43.291936295Z" level=info msg="Daemon has completed initialization"
+Apr 29 06:19:43 ip-172-31-40-23 systemd[1]: Started docker.service - Docker Application Container Engine.
+Apr 29 06:19:43 ip-172-31-40-23 dockerd[3312]: time="2024-04-29T06:19:43.349883230Z" level=info msg="API listen on /run/docker.sock"
+lines 1-21/21 (END)
+
+
+
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS                          PORTS      NAMES
+71638c506cfd   mysql     "docker-entrypoint.s…"   2 seconds ago        Created                                    hemant-c1
+65fd9fd87911   httpd     "httpd-foreground"       7 seconds ago        Created                                    deepak-c1
+35b3df0b0d2b   httpd     "httpd-foreground"       8 seconds ago        Created                                    Neeraj-c1
+fa05b7ba7a07   mariadb   "docker-entrypoint.s…"   About a minute ago   Exited (1) 7 seconds ago                   alpha-c5
+11e14eb1a818   percona   "/docker-entrypoint.…"   3 minutes ago        Created                         3306/tcp   trilok
+987858b75682   php       "docker-php-entrypoi…"   4 minutes ago        Exited (0) 3 minutes ago                   Prateek
+52dc6acf6d6d   nginx     "/docker-entrypoint.…"   4 minutes ago        Exited (0) About a minute ago              siba-c2
+bc20fd3d05c6   httpd     "httpd-foreground"       4 minutes ago        Exited (0) About a minute ago              siba-c1
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker container create --name=Ashok-c1 httpd
+34d0d9b40bf2011fc3ab7fd3ee34a22bbb0a9dfd8b7222d39842a3ae3c4b63a4
+root@ip-172-31-40-23:~# docker container create --name=Ashok-c2 httpd
+0eef393f31ef84e8a896643d055abab657055681566267bc7858664f7ddfecb8
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker container create --name=Ashok-c2 nginx
+Error response from daemon: Conflict. The container name "/Ashok-c2" is already in use by container "0eef393f31ef84e8a896643d055abab657055681566267bc7858664f7ddfecb8". You have to remove (or rename) that container to be able to reuse that name.
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker container create --name=Ashok-c3 nginx
+40be1d7de77a5fe678d0419738b4247cbc3380fe0972d73695071b9e87dd5a09
+root@ip-172-31-40-23:~# docker container create --name=Ashok-c4 nginx
+a62020ea14aa1c9f23e9bf6df6560e29353cfa257d34641bcb662f443527e050
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS                          PORTS                 NAMES
+e4a5d5a4817c   httpd     "httpd-foreground"       10 seconds ago       Created                                               hemant-c2
+a62020ea14aa   nginx     "/docker-entrypoint.…"   23 seconds ago       Created                                               Ashok-c4
+40be1d7de77a   nginx     "/docker-entrypoint.…"   28 seconds ago       Created                                               Ashok-c3
+2aa17cdf43ea   mysql     "docker-entrypoint.s…"   39 seconds ago       Created                         3306/tcp, 33060/tcp   trilok
+07dfc219520a   mariadb   "docker-entrypoint.s…"   53 seconds ago       Exited (1) 34 seconds ago                             alpha-c6
+14bb06c12745   httpd     "httpd-foreground"       About a minute ago   Exited (0) 8 seconds ago                              kt-c1
+0eef393f31ef   httpd     "httpd-foreground"       About a minute ago   Created                                               Ashok-c2
+34d0d9b40bf2   httpd     "httpd-foreground"       About a minute ago   Created                                               Ashok-c1
+71638c506cfd   mysql     "docker-entrypoint.s…"   2 minutes ago        Created                                               hemant-c1
+65fd9fd87911   httpd     "httpd-foreground"       2 minutes ago        Exited (0) About a minute ago                         deepak-c1
+35b3df0b0d2b   httpd     "httpd-foreground"       2 minutes ago        Exited (0) About a minute ago                         Neeraj-c1
+fa05b7ba7a07   mariadb   "docker-entrypoint.s…"   3 minutes ago        Exited (1) About a minute ago                         alpha-c5
+bc20fd3d05c6   httpd     "httpd-foreground"       6 minutes ago        Exited (0) 3 minutes ago                              siba-c1
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker start Ashok-c1
+Ashok-c1
+root@ip-172-31-40-23:~# history
+    1  hostnamectl
+    2  free ih
+    3  free -h
+    4  lscpu
+    5  clear
+    6  systemctl.staus doc
+    7  systemctl.staus docker
+    8  systemctl status docker
+    9  docker search httpd --limit=5
+   10  docker image
+   11  clear
+   12  docker ps -a
+   13  docker container create --name=Ashok-c1 httpd
+   14  docker container create --name=Ashok-c2 httpd
+   15  docker container create --name=Ashok-c2 nginx
+   16  docker container create --name=Ashok-c3 nginx
+   17  docker container create --name=Ashok-c4 nginx
+   18  docker ps -a
+   19  docker start Ashok-c1
+   20  history
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker  pause Ashok-c1
+Ashok-c1
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker unpause Ashok-c1
+Ashok-c1
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker ps -a | grep -i Ashok
+a62020ea14aa   nginx     "/docker-entrypoint.…"   8 minutes ago    Created                              Ashok-c4
+40be1d7de77a   nginx     "/docker-entrypoint.…"   8 minutes ago    Created                              Ashok-c3
+0eef393f31ef   httpd     "httpd-foreground"       9 minutes ago    Created                              Ashok-c2
+34d0d9b40bf2   httpd     "httpd-foreground"       9 minutes ago    Up 4 minutes               80/tcp    Ashok-c1
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker start Ashok-c2
+Ashok-c2
+root@ip-172-31-40-23:~# docker start Ashok-c3
+Ashok-c3
+root@ip-172-31-40-23:~# docker start Ashok-c4
+Ashok-c4
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker ps -a | grep -i Ashok
+a62020ea14aa   nginx     "/docker-entrypoint.…"   9 minutes ago    Up 9 seconds               80/tcp    Ashok-c4
+40be1d7de77a   nginx     "/docker-entrypoint.…"   9 minutes ago    Up 12 seconds              80/tcp    Ashok-c3
+0eef393f31ef   httpd     "httpd-foreground"       9 minutes ago    Up 15 seconds              80/tcp    Ashok-c2
+34d0d9b40bf2   httpd     "httpd-foreground"       10 minutes ago   Up 5 minutes               80/tcp    Ashok-c1
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker run -d --name=Ashok-c5 httpd
+2fdbe20b641bc50c4368435ec1d73c60b1e4dd6e8a698229088424f4e4f3ac18
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker ps -a | grep -i Ashok
+2fdbe20b641b   httpd     "httpd-foreground"       4 seconds ago    Up 3 seconds               80/tcp    Ashok-c5
+a62020ea14aa   nginx     "/docker-entrypoint.…"   10 minutes ago   Up About a minute          80/tcp    Ashok-c4
+40be1d7de77a   nginx     "/docker-entrypoint.…"   10 minutes ago   Up About a minute          80/tcp    Ashok-c3
+0eef393f31ef   httpd     "httpd-foreground"       11 minutes ago   Up About a minute          80/tcp    Ashok-c2
+34d0d9b40bf2   httpd     "httpd-foreground"       11 minutes ago   Up 6 minutes               80/tcp    Ashok-c1
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker stop Ashok-c2
+Ashok-c2
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker pause Ashok-c3
+Ashok-c3
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker ps -a | grep -i Ashok
+2fdbe20b641b   httpd     "httpd-foreground"       3 minutes ago        Up 3 minutes                    80/tcp    Ashok-c5
+a62020ea14aa   nginx     "/docker-entrypoint.…"   13 minutes ago       Up 4 minutes                    80/tcp    Ashok-c4
+40be1d7de77a   nginx     "/docker-entrypoint.…"   13 minutes ago       Up 4 minutes (Paused)           80/tcp    Ashok-c3
+0eef393f31ef   httpd     "httpd-foreground"       14 minutes ago       Exited (0) 14 seconds ago                 Ashok-c2
+34d0d9b40bf2   httpd     "httpd-foreground"       14 minutes ago       Up 9 minutes                    80/tcp    Ashok-c1
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker inspect Ashok-c4 | grep -i ipaddr
+            "SecondaryIPAddresses": null,
+            "IPAddress": "172.17.0.7",
+                    "IPAddress": "172.17.0.7",
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# curl 172.17.0.7
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+
+root@ip-172-31-40-23:~# docker stats Ashok-c1
+CONTAINER ID   NAME       CPU %     MEM USAGE / LIMIT     MEM %     NET I/O       BLOCK I/O    PIDS
+34d0d9b40bf2   Ashok-c1   0.00%     6.688MiB / 7.752GiB   0.08%     1.45kB / 0B   0B / 4.1kB   82
+CONTAINER ID   NAME       CPU %     MEM USAGE / LIMIT     MEM %     NET I/O       BLOCK I/O    PIDS
+34d0d9b40bf2   Ashok-c1   0.00%     6.688MiB / 7.752GiB   0.08%     1.45kB / 0B   0B / 4.1kB   82
+CONTAINER ID   NAME       CPU %     MEM USAGE / LIMIT     MEM %     NET I/O       BLOCK I/O    PIDS
+34d0d9b40bf2   Ashok-c1   0.01%     6.688MiB / 7.752GiB   0.08%     1.45kB / 0B   0B / 4.1kB   82
+CONTAINER ID   NAME       CPU %     MEM USAGE / LIMIT     MEM %     NET I/O       BLOCK I/O    PIDS
+34d0d9b40bf2   Ashok-c1   0.01%     6.688MiB / 7.752GiB   0.08%     1.45kB / 0B   0B / 4.1kB   82
+CONTAINER ID   NAME       CPU %     MEM USAGE / LIMIT     MEM %     NET I/O       BLOCK I/O    PIDS
+34d0d9b40bf2   Ashok-c1   0.01%     6.688MiB / 7.752GiB   0.08%     1.45kB / 0B   0B / 4.1kB   82
+CONTAINER ID   NAME       CPU %     MEM USAGE / LIMIT     MEM %     NET I/O       BLOCK I/O    PIDS
+34d0d9b40bf2   Ashok-c1   0.01%     6.688MiB / 7.752GiB   0.08%     1.45kB / 0B   0B / 4.1kB   82
+CONTAINER ID   NAME       CPU %     MEM USAGE / LIMIT     MEM %     NET I/O       BLOCK I/O    PIDS
+34d0d9b40bf2   Ashok-c1   0.01%     6.688MiB / 7.752GiB   0.08%     1.45kB / 0B   0B / 4.1kB   82
+CONTAINER ID   NAME       CPU %     MEM USAGE / LIMIT     MEM %     NET I/O       BLOCK I/O    PIDS
+34d0d9b40bf2   Ashok-c1   0.01%     6.688MiB / 7.752GiB   0.08%     1.45kB / 0B   0B / 4.1kB   82
+CONTAINER ID   NAME       CPU %     MEM USAGE / LIMIT     MEM %     NET I/O       BLOCK I/O    PIDS
+34d0d9b40bf2   Ashok-c1   0.00%     6.688MiB / 7.752GiB   0.08%     1.45kB / 0B   0B / 4.1kB   82
+^C
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker logs Ashok-c2
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+[Mon Apr 29 06:50:29.232486 2024] [mpm_event:notice] [pid 1:tid 130938752448384] AH00489: Apache/2.4.59 (Unix) configured -- resuming normal operations
+[Mon Apr 29 06:50:29.235288 2024] [core:notice] [pid 1:tid 130938752448384] AH00094: Command line: 'httpd -D FOREGROUND'
+[Mon Apr 29 06:55:08.347941 2024] [mpm_event:notice] [pid 1:tid 130938752448384] AH00492: caught SIGWINCH, shutting down gracefully
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker logs Ashok-c3
+/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up
+2024/04/29 06:50:32 [notice] 1#1: using the "epoll" event method
+2024/04/29 06:50:32 [notice] 1#1: nginx/1.25.5
+2024/04/29 06:50:32 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14)
+2024/04/29 06:50:32 [notice] 1#1: OS: Linux 6.8.0-1008-aws
+2024/04/29 06:50:32 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/04/29 06:50:32 [notice] 1#1: start worker processes
+2024/04/29 06:50:32 [notice] 1#1: start worker process 29
+2024/04/29 06:50:32 [notice] 1#1: start worker process 30
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker exec -it Ashok-c2 bash
+Error response from daemon: container 0eef393f31ef84e8a896643d055abab657055681566267bc7858664f7ddfecb8 is not running
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker exec -it Ashok-c3 bash
+Error response from daemon: Container Ashok-c3 is paused, unpause the container before exec
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# ifconfig
+Command 'ifconfig' not found, but can be installed with:
+apt install net-tools
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# ifconfig -a
+Command 'ifconfig' not found, but can be installed with:
+apt install net-tools
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# apt update
+Hit:1 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble InRelease
+Get:2 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates InRelease [89.7 kB]
+Hit:3 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-backports InRelease
+Hit:4 https://download.docker.com/linux/ubuntu noble InRelease
+Hit:5 http://security.ubuntu.com/ubuntu noble-security InRelease
+Fetched 89.7 kB in 1s (142 kB/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+All packages are up to date.
+root@ip-172-31-40-23:~# apt install net-tools -y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following NEW packages will be installed:
+  net-tools
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 204 kB of archives.
+After this operation, 811 kB of additional disk space will be used.
+Get:1 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble/main amd64 net-tools amd64 2.10-0.1ubuntu4 [204 kB]
+Fetched 204 kB in 0s (10.7 MB/s)
+Selecting previously unselected package net-tools.
+(Reading database ... 72105 files and directories currently installed.)
+Preparing to unpack .../net-tools_2.10-0.1ubuntu4_amd64.deb ...
+Unpacking net-tools (2.10-0.1ubuntu4) ...
+Setting up net-tools (2.10-0.1ubuntu4) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Scanning processes...
+Scanning linux images...
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# ifconfig -a
+docker0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        inet6 fe80::42:93ff:fea5:5c6d  prefixlen 64  scopeid 0x20<link>
+        ether 02:42:93:a5:5c:6d  txqueuelen 0  (Ethernet)
+        RX packets 2414  bytes 143759 (143.7 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 4839  bytes 85432727 (85.4 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker run -d --name=Ashok1-web1 -p 9080:81 Ashokcon/ashok123:12345
+Unable to find image 'Ashokcon/ashok123:12345' locally
+docker: Error response from daemon: Get "https://Ashokcon/v2/": dial tcp: lookup Ashokcon on 127.0.0.53:53: server misbehaving.
+See 'docker run --help'.
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker images
+REPOSITORY                   TAG       IMAGE ID       CREATED             SIZE
+<none>                       <none>    d3fec6962df2   About an hour ago   186MB
+<none>                       <none>    5096ea0411d1   About an hour ago   186MB
+<none>                       <none>    a7068c71148c   About an hour ago   186MB
+php                          latest    457841cadcb5   5 days ago          537MB
+nginx                        latest    7383c266ef25   5 days ago          188MB
+httpd                        latest    67c2fc9e3d84   3 weeks ago         147MB
+mysql                        latest    6f343283ab56   4 weeks ago         632MB
+kharatramesh/vadapavimages   vadapav   ae0dddf54b63   2 years ago         369MB
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker run -d --name=Ashok1-web1 -p 9080:81 httpd:Ashok
+Unable to find image 'httpd:Ashok' locally
+docker: Error response from daemon: manifest for httpd:Ashok not found: manifest unknown: manifest unknown.
+See 'docker run --help'.
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker run -d --name=Ashok1-web1 -p 9080:81 httpd
+17ffea53bf6c4859f4d1ce64d4c9cb487d171639467eca887a9bdf181913de61
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker images
+REPOSITORY                   TAG        IMAGE ID       CREATED             SIZE
+<none>                       <none>     d3fec6962df2   About an hour ago   186MB
+<none>                       <none>     5096ea0411d1   About an hour ago   186MB
+<none>                       <none>     a7068c71148c   About an hour ago   186MB
+php                          latest     457841cadcb5   5 days ago          537MB
+nginx                        latest     7383c266ef25   5 days ago          188MB
+httpd                        latest     67c2fc9e3d84   3 weeks ago         147MB
+mysql                        latest     6f343283ab56   4 weeks ago         632MB
+kharatramesh/vadapavimages   pavbhaji   0fd4198fb5c5   2 years ago         396MB
+kharatramesh/vadapavimages   vadapav    ae0dddf54b63   2 years ago         369MB
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#  docker run -d --name=Ashok1-web1 -p 9081:82 kharatramesh/vadapavimages:vadapav
+docker: Error response from daemon: Conflict. The container name "/Ashok1-web1" is already in use by container "17ffea53bf6c4859f4d1ce64d4c9cb487d171639467eca887a9bdf181913de61". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+root@ip-172-31-40-23:~# docker run -d --name=Ashok1-web2 -p 9080:81 httpd
+d4cd67891ab2c82054e89da078a3153f3f8211252229f96221f504a8d5ca4f76
+docker: Error response from daemon: driver failed programming external connectivity on endpoint Ashok1-web2 (a59a63a67c5b40675d58985ad59dff40994f8e2467cd0461c7f36a370092444c): Bind for 0.0.0.0:9080 failed: port is already allocated.
+root@ip-172-31-40-23:~#
+
+
+
+
+
+root@ip-172-31-40-23:~# #### create database instance and access
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker run -d --name=ashokdb1 -p 1908:3306 -e MYSQL_ROOT_PASSWORD=1234 mysql
+79e24518d92532f403ec9b362efdfe83d53821ba77fb04cc27994c59ba3460f7
+root@ip-172-31-40-23:~# docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS              PORTS                                                  NAMES
+79e24518d925   mysql     "docker-entrypoint.s…"   9 seconds ago        Up 8 seconds        33060/tcp, 0.0.0.0:1908->3306/tcp, :::1908->3306/tcp   ashokdb1
+07c57fa3c8a4   mysql     "docker-entrypoint.s…"   28 seconds ago       Up 26 seconds       33060/tcp, 0.0.0.0:7786->3306/tcp, :::7786->3306/tcp   trilok-db1
+2a8d03938dc4   mysql     "docker-entrypoint.s…"   32 seconds ago       Created                                                                    himanshu-db11
+c49cd85f3d8e   mysql     "docker-entrypoint.s…"   32 seconds ago       Up 31 seconds       33060/tcp, 0.0.0.0:2222->3306/tcp, :::2222->3306/tcp   hemant-db1
+cb6ade381e91   mysql     "docker-entrypoint.s…"   35 seconds ago       Up 34 seconds       33060/tcp, 0.0.0.0:9999->3306/tcp, :::9999->3306/tcp   bravo-db1
+ab228dfb7efd   mysql     "docker-entrypoint.s…"   37 seconds ago       Created                                                                    kajol-db1
+d272ca9783d5   mysql     "docker-entrypoint.s…"   38 seconds ago       Up 36 seconds       33060/tcp, 0.0.0.0:7775->3306/tcp, :::7775->3306/tcp   siba-db1
+bd63322837b7   mysql     "docker-entrypoint.s…"   About a minute ago   Created                                                                    trilok-db
+bfff29798337   mysql     "docker-entrypoint.s…"   About a minute ago   Up About a minute   33060/tcp, 0.0.0.0:1525->3306/tcp, :::1525->3306/tcp   Pnegi_db
+061b2c021d78   mysql     "docker-entrypoint.s…"   About a minute ago   Up About a minute   33060/tcp, 0.0.0.0:7771->3306/tcp, :::7771->3306/tcp   trainer-db11
+72db7eabd994   mysql     "docker-entrypoint.s…"   10 minutes ago       Up 10 minutes       33060/tcp, 0.0.0.0:7777->3306/tcp, :::7777->3306/tcp   trainer-db1
+352c1fc2d81a   httpd     "kharatramesh/vadapa…"   11 minutes ago       Created             0.0.0.0:9090->80/tcp, :::9090->80/tcp                  siba-web1
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker exec -it ashokdb1 bash
+bash-4.4#
+bash-4.4#
+bash-4.4# ###login to DB
+bash-4.4#
+bash-4.4#
+bash-4.4# mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.3.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database mydatabase;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use mydatabase
+Database changed
+mysql> create table fruits (fruit_name varchar(30),id number);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'number)' at line 1
+mysql> create table fruits (fruit_name varchar(30),id varchar(10));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql>
+mysql>
+mysql> insert into fruits values ('Mango','1');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into fruits values ('Jackfruit','2');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+bash-4.4# docker ps root@ip-172-31-40-23:~# exit
+logout
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$  1
+mkdir: cannot create directory ‘/Ashok-DB1’: Permission denied
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$ mkdir Ashok-DB1
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$ ls -lrt
+total 4
+drwxrwxr-x 2 ubuntu ubuntu 4096 Apr 29 09:47 Ashok-DB1
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$ docker run -d --name=ashokdb1 -v /ashok-DB1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -p 1908:3306 mysql
+docker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Head "http://%2Fvar%2Frun%2Fdocker.sock/_ping": dial unix /var/run/docker.sock: connect: permission denied.
+See 'docker run --help'.
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$ cd /var/lib/mysql
+-bash: cd: /var/lib/mysql: No such file or directory
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$ pwd
+/home/ubuntu
+ubuntu@ip-172-31-40-23:~$ ls -lrt
+total 4
+drwxrwxr-x 2 ubuntu ubuntu 4096 Apr 29 09:47 Ashok-DB1
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$ cd Ashok-DB1/
+ubuntu@ip-172-31-40-23:~/Ashok-DB1$ ls -lrt
+total 0
+ubuntu@ip-172-31-40-23:~/Ashok-DB1$
+ubuntu@ip-172-31-40-23:~/Ashok-DB1$
+ubuntu@ip-172-31-40-23:~/Ashok-DB1$
+ubuntu@ip-172-31-40-23:~/Ashok-DB1$
+ubuntu@ip-172-31-40-23:~/Ashok-DB1$
+ubuntu@ip-172-31-40-23:~/Ashok-DB1$ docker run -d --name=ashokdb1 -v /Ashok-DB1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -p 1908:3306 mysql
+docker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Head "http://%2Fvar%2Frun%2Fdocker.sock/_ping": dial unix /var/run/docker.sock: connect: permission denied.
+See 'docker run --help'.
+ubuntu@ip-172-31-40-23:~/Ashok-DB1$
+ubuntu@ip-172-31-40-23:~/Ashok-DB1$ ls -lrt
+total 0
+ubuntu@ip-172-31-40-23:~/Ashok-DB1$ cd ..
+ubuntu@ip-172-31-40-23:~$ ls -lrt
+total 4
+drwxrwxr-x 2 ubuntu ubuntu 4096 Apr 29 09:47 Ashok-DB1
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$ pwd
+/home/ubuntu
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$ sudo docker run -d --name=ashokdb1 -v ~/Ashok-DB1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -p 1908:3306 mysql
+af47851318a2d0075f779c4ed637ffb597c5d9dbc01bd0a57d1a5aab6a483721
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$ cd Ashok-DB1/
+ubuntu@ip-172-31-40-23:~/Ashok-DB1$ ls -lrt
+total 100712
+-rw-r----- 1 999 systemd-journal       56 Apr 29 09:52  auto.cnf
+-rw-r----- 1 999 systemd-journal  8585216 Apr 29 09:52 '#ib_16384_1.dblwr'
+drwxr-x--- 2 999 systemd-journal     4096 Apr 29 09:52  performance_schema
+-rw------- 1 999 systemd-journal     1680 Apr 29 09:52  ca-key.pem
+-rw-r--r-- 1 999 systemd-journal     1108 Apr 29 09:52  ca.pem
+-rw------- 1 999 systemd-journal     1680 Apr 29 09:52  server-key.pem
+-rw-r--r-- 1 999 systemd-journal     1108 Apr 29 09:52  server-cert.pem
+-rw------- 1 999 systemd-journal     1680 Apr 29 09:52  client-key.pem
+-rw-r--r-- 1 999 systemd-journal     1108 Apr 29 09:52  client-cert.pem
+-rw------- 1 999 systemd-journal     1676 Apr 29 09:52  private_key.pem
+-rw-r--r-- 1 999 systemd-journal      452 Apr 29 09:52  public_key.pem
+drwxr-x--- 2 999 systemd-journal     4096 Apr 29 09:52  mysql
+drwxr-x--- 2 999 systemd-journal     4096 Apr 29 09:52  sys
+lrwxrwxrwx 1 999 systemd-journal       27 Apr 29 09:52  mysql.sock -> /var/run/mysqld/mysqld.sock
+-rw-r----- 1 999 systemd-journal  3040348 Apr 29 09:53  binlog.000001
+-rw-r----- 1 999 systemd-journal     5717 Apr 29 09:53  ib_buffer_pool
+drwxr-x--- 2 999 systemd-journal     4096 Apr 29 09:53 '#innodb_temp'
+-rw-r----- 1 999 systemd-journal       32 Apr 29 09:53  binlog.index
+-rw-r----- 1 999 systemd-journal      158 Apr 29 09:53  binlog.000002
+drwxr-x--- 2 999 systemd-journal     4096 Apr 29 09:53 '#innodb_redo'
+-rw-r----- 1 999 systemd-journal 12582912 Apr 29 09:53  ibtmp1
+-rw-r----- 1 999 systemd-journal 12582912 Apr 29 09:53  ibdata1
+-rw-r----- 1 999 systemd-journal 16777216 Apr 29 09:53  undo_001
+-rw-r----- 1 999 systemd-journal 16777216 Apr 29 09:53  undo_002
+-rw-r----- 1 999 systemd-journal   196608 Apr 29 09:53 '#ib_16384_0.dblwr'
+-rw-r----- 1 999 systemd-journal 32505856 Apr 29 09:53  mysql.ibd
+ubuntu@ip-172-31-40-23:~/Ashok-DB1$
+ubuntu@ip-172-31-40-23:~/Ashok-DB1$
+ubuntu@ip-172-31-40-23:~/Ashok-DB1$ cd ..
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$
+ubuntu@ip-172-31-40-23:~$ sudo -i
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker logs ashokdb1
+2024-04-29 09:52:49+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.3.0-1.el8 started.
+2024-04-29 09:52:49+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2024-04-29 09:52:49+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.3.0-1.el8 started.
+2024-04-29 09:52:49+00:00 [Note] [Entrypoint]: Initializing database files
+2024-04-29T09:52:49.797283Z 0 [System] [MY-015017] [Server] MySQL Server Initialization - start.
+2024-04-29T09:52:49.799731Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.3.0) initializing of server in progress as process 80
+2024-04-29T09:52:49.809040Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-04-29T09:52:50.540378Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-04-29T09:52:52.293672Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2024-04-29T09:52:56.850728Z 0 [System] [MY-015018] [Server] MySQL Server Initialization - end.
+2024-04-29 09:52:56+00:00 [Note] [Entrypoint]: Database files initialized
+2024-04-29 09:52:56+00:00 [Note] [Entrypoint]: Starting temporary server
+2024-04-29T09:52:56.880872Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-04-29T09:52:57.203862Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.3.0) starting as process 122
+2024-04-29T09:52:57.223563Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-04-29T09:52:57.432949Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-04-29T09:52:57.717286Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-04-29T09:52:57.717331Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-04-29T09:52:57.721100Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-04-29T09:52:57.745613Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: /var/run/mysqld/mysqlx.sock
+2024-04-29T09:52:57.745702Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.3.0'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server - GPL.
+2024-04-29 09:52:57+00:00 [Note] [Entrypoint]: Temporary server started.
+'/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/leapseconds' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/tzdata.zi' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
+
+2024-04-29 09:53:00+00:00 [Note] [Entrypoint]: Stopping temporary server
+2024-04-29T09:53:00.463051Z 10 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.3.0).
+2024-04-29T09:53:01.721465Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.3.0)  MySQL Community Server - GPL.
+2024-04-29T09:53:01.721495Z 0 [System] [MY-015016] [Server] MySQL Server - end.
+2024-04-29 09:53:02+00:00 [Note] [Entrypoint]: Temporary server stopped
+
+2024-04-29 09:53:02+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.
+
+2024-04-29T09:53:02.480343Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-04-29T09:53:02.810363Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.3.0) starting as process 1
+2024-04-29T09:53:02.819499Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-04-29T09:53:03.034729Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-04-29T09:53:03.283884Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-04-29T09:53:03.283931Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-04-29T09:53:03.287568Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-04-29T09:53:03.313631Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2024-04-29T09:53:03.313753Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.3.0'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+root@ip-172-31-40-23:~#
+
+
+root@ip-172-31-40-23:~# docker logs ashokdb1
+2024-04-29 09:52:49+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.3.0-1.el8 started.
+2024-04-29 09:52:49+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2024-04-29 09:52:49+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.3.0-1.el8 started.
+2024-04-29 09:52:49+00:00 [Note] [Entrypoint]: Initializing database files
+2024-04-29T09:52:49.797283Z 0 [System] [MY-015017] [Server] MySQL Server Initialization - start.
+2024-04-29T09:52:49.799731Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.3.0) initializing of server in progress as process 80
+2024-04-29T09:52:49.809040Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-04-29T09:52:50.540378Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-04-29T09:52:52.293672Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2024-04-29T09:52:56.850728Z 0 [System] [MY-015018] [Server] MySQL Server Initialization - end.
+2024-04-29 09:52:56+00:00 [Note] [Entrypoint]: Database files initialized
+2024-04-29 09:52:56+00:00 [Note] [Entrypoint]: Starting temporary server
+2024-04-29T09:52:56.880872Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-04-29T09:52:57.203862Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.3.0) starting as process 122
+2024-04-29T09:52:57.223563Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-04-29T09:52:57.432949Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-04-29T09:52:57.717286Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-04-29T09:52:57.717331Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-04-29T09:52:57.721100Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-04-29T09:52:57.745613Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: /var/run/mysqld/mysqlx.sock
+2024-04-29T09:52:57.745702Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.3.0'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server - GPL.
+2024-04-29 09:52:57+00:00 [Note] [Entrypoint]: Temporary server started.
+'/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/leapseconds' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/tzdata.zi' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
+
+2024-04-29 09:53:00+00:00 [Note] [Entrypoint]: Stopping temporary server
+2024-04-29T09:53:00.463051Z 10 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.3.0).
+2024-04-29T09:53:01.721465Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.3.0)  MySQL Community Server - GPL.
+2024-04-29T09:53:01.721495Z 0 [System] [MY-015016] [Server] MySQL Server - end.
+2024-04-29 09:53:02+00:00 [Note] [Entrypoint]: Temporary server stopped
+
+2024-04-29 09:53:02+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.
+
+2024-04-29T09:53:02.480343Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-04-29T09:53:02.810363Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.3.0) starting as process 1
+2024-04-29T09:53:02.819499Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-04-29T09:53:03.034729Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-04-29T09:53:03.283884Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-04-29T09:53:03.283931Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-04-29T09:53:03.287568Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-04-29T09:53:03.313631Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2024-04-29T09:53:03.313753Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.3.0'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker volume create Ashok
+Ashok
+root@ip-172-31-40-23:~# docker volume ls
+DRIVER    VOLUME NAME
+local     1c1b3f62f4408f81af21a1831b827839489b39dea3d7ac763f6c245ff886275f
+local     2a2f77ef5b2e7f7c6ee352560e764c3c9998f51e0bdf0ee7b86bbd22b82431ba
+local     4a9476a0b2bd4b391d48cd09520913e7f370211185d2913e5231630a9b5a9c10
+local     04bae0ed079dbbbb2d9c68bd9f905866f5bd47dad8d838ccc659a3761c89fd69
+local     5f133d11e4d418459fe75579e6d22f29d037fafdc3a152e23e6cb196de7891e8
+local     6ae98b1d71963a7718d47d09ff3311ac7d9cb01136462dce5c0e50015d45de88
+local     6efd23d88c879b274f00e6c487bc6944a0b779de44575b72278464dfb3d7ab77
+local     7dc5a6777ac40c594a3747268ce00c1055bb767b66363eefa700af84c69b5169
+local     9b0f8ace790c795b9f9f9e442a5df46a677e1d01c10388e89823cbb6f138874c
+local     63c4a0a974bc15a05185d966ff58b2ec82f12dde244d1d711611162e8a51d394
+local     71af8329e5046c1370a511bfccd5b5a51f9ec65298c50e550db13a352e4ece1a
+local     75c2c3b4c61d90c3886755b5424c7c5f7dcaafc74ec4e87f87f1920103ebf889
+local     75f69521aa9cd219d2226e7899b91cf5ad58b2ccd2d2b2cd45e5ae422ab7a30c
+local     680f229a115ceed566832dae41ca9bf96588b130e3d55b861155a6cbf0521076
+local     2533eecc8160b103ebce1e3dc2a74bb45dd5418f7be7d2f58978b19feba1a57a
+local     5329341f7df7dfda8881f7f834e267b981bab773bbe800df194cba7896bb1f58
+local     798365545b45a985b58c94cbd84e2fd7d34d334b4c60ebe0af3efe7c156f0e26
+local     Ashok
+local     FromDocker_varsha
+local     a49cc507c57bd8c307daf7ea72451166ab76f92b3206fd1a76f9273b03e62f73
+local     a285bc4cf7554ab499354780d5100b57b04797ccdeb71ff96af6a1b10c062cbc
+local     a745f412a034715063264ad2af6b8c588634131846a44d646e633dfd5179f095
+local     af8cef4bd90bec0cb5539c11f719651f7029485505a6f93d5e29da3ece09cae9
+local     b292da02638e6af7175af3d2370cd110afd2f996e7335b018d7e20fe5c6446f6
+local     c7f2533ef0ab137b84a211e5800f7652e6f356fd64b6d67f816ba879f53d5d7b
+local     c8bdcf3f7840a141fc0f7fa57bc01b0b1e99ae8e34370c7219753c6a845b2f78
+local     c3291dee2ec2314a572da9031a04ca1e08f6a707d86c31cd310c6c92042b8b07
+local     ca9e724bd6085a2ab20c43c2ce2639168de884cd823f010b6e373254afe012a6
+local     ce252452d913bbd9052c3a8c8bfd5c9f4a1ed66afc99e3f5029e8fb18d0dc74f
+local     d7aaec2093cb69eef5da2918a4274bc16778128b1f60b5d41296417cfed78ec2
+local     d58e422d1eeed6e70a4f8971f44d29984a715d60ad30b43575dfd092bcf84138
+local     d885a704b3738ff1f937c59a49165454faa016ece6b1a1dfba11bd942ff932d6
+local     e1
+local     el
+local     f44a7b3d57e5fd25e81e969c439ad745a8e219aa8207ad59ed2ff9ee24a726ac
+local     f49409ecb5e3a92b8c4aece6f1395642a1a373603714d6018b2d8014946fd6a7
+local     pl
+local     s1
+local     vadapav
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker run -d --name=trainer-ad -v Ashok:/var/lib/mysql -c MYSQL_ROOT_PASSWORD=123 mysql
+invalid argument "MYSQL_ROOT_PASSWORD=123" for "-c, --cpu-shares" flag: strconv.ParseInt: parsing "MYSQL_ROOT_PASSWORD=123": invalid syntax
+See 'docker run --help'.
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker run -d --name=trainer-ad -v Ashok:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 mysql
+33b8372d3c1614fd86f8ec0c1e552e751232c993d480d072d5e343889476c7a2
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker volume ls
+DRIVER    VOLUME NAME
+local     1c1b3f62f4408f81af21a1831b827839489b39dea3d7ac763f6c245ff886275f
+local     2a2f77ef5b2e7f7c6ee352560e764c3c9998f51e0bdf0ee7b86bbd22b82431ba
+local     4a9476a0b2bd4b391d48cd09520913e7f370211185d2913e5231630a9b5a9c10
+local     04bae0ed079dbbbb2d9c68bd9f905866f5bd47dad8d838ccc659a3761c89fd69
+local     5f133d11e4d418459fe75579e6d22f29d037fafdc3a152e23e6cb196de7891e8
+local     6ae98b1d71963a7718d47d09ff3311ac7d9cb01136462dce5c0e50015d45de88
+local     6efd23d88c879b274f00e6c487bc6944a0b779de44575b72278464dfb3d7ab77
+local     7dc5a6777ac40c594a3747268ce00c1055bb767b66363eefa700af84c69b5169
+local     9b0f8ace790c795b9f9f9e442a5df46a677e1d01c10388e89823cbb6f138874c
+local     63c4a0a974bc15a05185d966ff58b2ec82f12dde244d1d711611162e8a51d394
+local     71af8329e5046c1370a511bfccd5b5a51f9ec65298c50e550db13a352e4ece1a
+local     75c2c3b4c61d90c3886755b5424c7c5f7dcaafc74ec4e87f87f1920103ebf889
+local     75f69521aa9cd219d2226e7899b91cf5ad58b2ccd2d2b2cd45e5ae422ab7a30c
+local     680f229a115ceed566832dae41ca9bf96588b130e3d55b861155a6cbf0521076
+local     2533eecc8160b103ebce1e3dc2a74bb45dd5418f7be7d2f58978b19feba1a57a
+local     5329341f7df7dfda8881f7f834e267b981bab773bbe800df194cba7896bb1f58
+local     798365545b45a985b58c94cbd84e2fd7d34d334b4c60ebe0af3efe7c156f0e26
+local     Ashok
+local     FromDocker_varsha
+local     a49cc507c57bd8c307daf7ea72451166ab76f92b3206fd1a76f9273b03e62f73
+local     a285bc4cf7554ab499354780d5100b57b04797ccdeb71ff96af6a1b10c062cbc
+local     a745f412a034715063264ad2af6b8c588634131846a44d646e633dfd5179f095
+local     af8cef4bd90bec0cb5539c11f719651f7029485505a6f93d5e29da3ece09cae9
+local     b292da02638e6af7175af3d2370cd110afd2f996e7335b018d7e20fe5c6446f6
+local     c7f2533ef0ab137b84a211e5800f7652e6f356fd64b6d67f816ba879f53d5d7b
+local     c8bdcf3f7840a141fc0f7fa57bc01b0b1e99ae8e34370c7219753c6a845b2f78
+local     c3291dee2ec2314a572da9031a04ca1e08f6a707d86c31cd310c6c92042b8b07
+local     ca9e724bd6085a2ab20c43c2ce2639168de884cd823f010b6e373254afe012a6
+local     ce252452d913bbd9052c3a8c8bfd5c9f4a1ed66afc99e3f5029e8fb18d0dc74f
+local     d7aaec2093cb69eef5da2918a4274bc16778128b1f60b5d41296417cfed78ec2
+local     d58e422d1eeed6e70a4f8971f44d29984a715d60ad30b43575dfd092bcf84138
+local     d885a704b3738ff1f937c59a49165454faa016ece6b1a1dfba11bd942ff932d6
+local     e1
+local     el
+local     f44a7b3d57e5fd25e81e969c439ad745a8e219aa8207ad59ed2ff9ee24a726ac
+local     f49409ecb5e3a92b8c4aece6f1395642a1a373603714d6018b2d8014946fd6a7
+local     pl
+local     s1
+local     vadapav
+root@ip-172-31-40-23:~# cd /var/lib/docker/volumes/Ashok/
+root@ip-172-31-40-23:/var/lib/docker/volumes/Ashok# ls -lrt
+total 4
+drwxrwxrwt 7 999 systemd-journal 4096 Apr 29 10:10 _data
+root@ip-172-31-40-23:/var/lib/docker/volumes/Ashok# cd data
+-bash: cd: data: No such file or directory
+root@ip-172-31-40-23:/var/lib/docker/volumes/Ashok# pwd
+/var/lib/docker/volumes/Ashok
+root@ip-172-31-40-23:/var/lib/docker/volumes/Ashok#
+root@ip-172-31-40-23:/var/lib/docker/volumes/Ashok# cd _data/
+root@ip-172-31-40-23:/var/lib/docker/volumes/Ashok/_data# ls -lrt
+total 100712
+-rw-r----- 1 999 systemd-journal       56 Apr 29 10:10  auto.cnf
+-rw-r----- 1 999 systemd-journal  8585216 Apr 29 10:10 '#ib_16384_1.dblwr'
+drwxr-x--- 2 999 systemd-journal     4096 Apr 29 10:10  performance_schema
+-rw------- 1 999 systemd-journal     1676 Apr 29 10:10  ca-key.pem
+-rw-r--r-- 1 999 systemd-journal     1108 Apr 29 10:10  ca.pem
+-rw------- 1 999 systemd-journal     1676 Apr 29 10:10  server-key.pem
+-rw-r--r-- 1 999 systemd-journal     1108 Apr 29 10:10  server-cert.pem
+-rw------- 1 999 systemd-journal     1680 Apr 29 10:10  client-key.pem
+-rw-r--r-- 1 999 systemd-journal     1108 Apr 29 10:10  client-cert.pem
+-rw------- 1 999 systemd-journal     1676 Apr 29 10:10  private_key.pem
+-rw-r--r-- 1 999 systemd-journal      452 Apr 29 10:10  public_key.pem
+drwxr-x--- 2 999 systemd-journal     4096 Apr 29 10:10  mysql
+drwxr-x--- 2 999 systemd-journal     4096 Apr 29 10:10  sys
+lrwxrwxrwx 1 999 systemd-journal       27 Apr 29 10:10  mysql.sock -> /var/run/mysqld/mysqld.sock
+-rw-r----- 1 999 systemd-journal  3040348 Apr 29 10:10  binlog.000001
+-rw-r----- 1 999 systemd-journal     5732 Apr 29 10:10  ib_buffer_pool
+drwxr-x--- 2 999 systemd-journal     4096 Apr 29 10:10 '#innodb_temp'
+-rw-r----- 1 999 systemd-journal       32 Apr 29 10:10  binlog.index
+-rw-r----- 1 999 systemd-journal      158 Apr 29 10:10  binlog.000002
+drwxr-x--- 2 999 systemd-journal     4096 Apr 29 10:10 '#innodb_redo'
+-rw-r----- 1 999 systemd-journal 12582912 Apr 29 10:10  ibdata1
+-rw-r----- 1 999 systemd-journal 12582912 Apr 29 10:10  ibtmp1
+-rw-r----- 1 999 systemd-journal 32505856 Apr 29 10:10  mysql.ibd
+-rw-r----- 1 999 systemd-journal 16777216 Apr 29 10:12  undo_001
+-rw-r----- 1 999 systemd-journal   196608 Apr 29 10:12 '#ib_16384_0.dblwr'
+-rw-r----- 1 999 systemd-journal 16777216 Apr 29 10:12  undo_002
+root@ip-172-31-40-23:/var/lib/docker/volumes/Ashok/_data#
+
+
+
+root@ip-172-31-40-23:~# docker network create --driver=bridge --subnet=90.90.0.0/24 e-net5
+Error response from daemon: Pool overlaps with other one on this address space
+root@ip-172-31-40-23:~# brctl show
+bridge name     bridge id               STP enabled     interfaces
+br-1596f27ebb93         8000.024285e780cd       no              veth3aa2c82
+br-239a43ee4aea         8000.0242c8a24a65       no              vethfd80607
+br-2d570001af31         8000.024296b36991       no              veth8f8998a
+br-674d12d92f03         8000.024282f2048c       no              vethd52f518
+br-87c04364c642         8000.0242efc7d312       no
+br-891051d9498d         8000.0242194e359f       no              veth947454d
+br-b1e8d38a62e9         8000.02425f12fa7b       no              veth929ef30
+br-b89408dd3951         8000.0242b34ef0a4       no
+br-b93ef35fbf11         8000.0242d866d15b       no
+br-c586299a39b0         8000.024274739664       no              veth3658d7e
+br-e99cecd86161         8000.02425db5f4cd       no              vethc001413
+br-fcb919da507c         8000.02420b1aac32       no              veth6e7ef67
+docker0         8000.024293a55c6d       no              veth5365813
+                                                        veth880f328
+                                                        vethd5cf3b9
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker network create --driver=bridge --subnet=90.90.0.8/24 e-net5
+Error response from daemon: invalid network config:
+invalid subnet 90.90.0.8/24: it should be 90.90.0.0/24
+root@ip-172-31-40-23:~# brctl show
+bridge name     bridge id               STP enabled     interfaces
+br-1596f27ebb93         8000.024285e780cd       no              veth3aa2c82
+br-239a43ee4aea         8000.0242c8a24a65       no              vethfd80607
+br-2d570001af31         8000.024296b36991       no              veth8f8998a
+br-674d12d92f03         8000.024282f2048c       no              vethd52f518
+br-87c04364c642         8000.0242efc7d312       no
+br-891051d9498d         8000.0242194e359f       no              veth947454d
+br-b1e8d38a62e9         8000.02425f12fa7b       no              veth929ef30
+br-b89408dd3951         8000.0242b34ef0a4       no
+br-b93ef35fbf11         8000.0242d866d15b       no
+br-c586299a39b0         8000.024274739664       no              veth3658d7e
+br-e99cecd86161         8000.02425db5f4cd       no              vethc001413
+br-fcb919da507c         8000.02420b1aac32       no              veth6e7ef67
+docker0         8000.024293a55c6d       no              veth5365813
+                                                        veth880f328
+                                                        vethd5cf3b9
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker network create --driver=bridge --subnet=90.90.0.0/24 e-net5
+Error response from daemon: Pool overlaps with other one on this address space
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker network create --driver=bridge --subnet=70.70.0.0/24 e-net5
+6ce41ccdcdc4ef4f2e101a9b1bc12928f52fe7fa3fc5bd7b751786151c2ad797
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# brctl show
+bridge name     bridge id               STP enabled     interfaces
+br-1596f27ebb93         8000.024285e780cd       no              veth3aa2c82
+br-239a43ee4aea         8000.0242c8a24a65       no              vethfd80607
+br-2d570001af31         8000.024296b36991       no              veth8f8998a
+br-5aee7f4abbc6         8000.02423350853f       no
+br-674d12d92f03         8000.024282f2048c       no              vethd52f518
+br-6ce41ccdcdc4         8000.02428b8e4057       no
+br-87c04364c642         8000.0242efc7d312       no
+br-891051d9498d         8000.0242194e359f       no              veth947454d
+br-b1e8d38a62e9         8000.02425f12fa7b       no              veth929ef30
+br-b89408dd3951         8000.0242b34ef0a4       no
+br-b93ef35fbf11         8000.0242d866d15b       no
+br-c586299a39b0         8000.024274739664       no              veth3658d7e
+br-e99cecd86161         8000.02425db5f4cd       no              vethc001413
+br-f58892790eda         8000.0242bec4c4fe       no
+br-fcb919da507c         8000.02420b1aac32       no              veth6e7ef67
+docker0         8000.024293a55c6d       no              veth5365813
+                                                        veth880f328
+                                                        vethd5cf3b9
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker run -d --name=cont1 --network=e-net5 --ip=70.70.0.0 --hostname=dosa.samosa.com --memory=20M --cpus="0.0001" httpd
+ea66b214837745da4f3444f2a21f5e02fb969f1a0e86d34c01e5d3777dbcfa36
+docker: Error response from daemon: Address already in use.
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker run -d --name=cont1 --network=e-net5 --ip=70.70.0.0 --hostname=ashok.com --memory=20M --cpus="0.0001" httpd
+docker: Error response from daemon: Conflict. The container name "/cont1" is already in use by container "ea66b214837745da4f3444f2a21f5e02fb969f1a0e86d34c01e5d3777dbcfa36". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker run -d --name=cont1 --network=e-net6 --ip=70.70.0.0 --hostname=ashok2.com --memory=20M --cpus="0.0001" httpd
+docker: Error response from daemon: Conflict. The container name "/cont1" is already in use by container "ea66b214837745da4f3444f2a21f5e02fb969f1a0e86d34c01e5d3777dbcfa36". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~#
+root@ip-172-31-40-23:~# docker run -d --name=cont2 --network=e-net5 --ip=70.70.0.0 --hostname=ashok3.com --memory=20M --cpus="0.0001" httpd
+b689bfb9da319a68e9bbe8bfbc189a5e3ddc2f60143a9efb10df0b3dfb610eef
+docker: Error response from daemon: Address already in use.
+root@ip-172-31-40-23:~#
+
+
+
+
+==============Commands
+
+    1  hostnamectl
+    2  free ih
+    3  free -h
+    4  lscpu
+    5  clear
+    6  systemctl.staus doc
+    7  systemctl.staus docker
+    8  systemctl status docker
+    9  docker search httpd --limit=5
+   10  docker image
+   11  clear
+   12  docker ps -a
+   13  docker container create --name=Ashok-c1 httpd
+   14  docker container create --name=Ashok-c2 httpd
+   15  docker container create --name=Ashok-c2 nginx
+   16  docker container create --name=Ashok-c3 nginx
+   17  docker container create --name=Ashok-c4 nginx
+   18  docker ps -a
+   19  docker start Ashok-c1
+   20  history
+   21  docker  pause Ashok-c1
+   22  docker unpause Ashok-c1
+   23  docker ps -a | grep -i Ashok
+   24  docker start Ashok-c2
+   25  docker start Ashok-c3
+   26  docker start Ashok-c4
+   27  docker ps -a | grep -i Ashok
+   28  docker run -d --name=Ashok-c5 httpd
+   29  docker ps -a | grep -i Ashok
+   30  docker stop Ashok-c2
+   31  docker pause Ashok-c3
+   32  docker ps -a | grep -i Ashok
+   33  docker inspect Ashok-c4 | grep -i ipaddr
+   34  curl 172.17.0.7
+   35  docker stats Ashok-c1
+   36  docker logs Ashok-c2
+   37  docker logs Ashok-c3
+   38  docker exec -it Ashok-c2 bash
+   39  docker exec -it Ashok-c3 bash
+   40  ifconfig
+   41  ifconfig -a
+   42  apt update
+   43  apt install net-tools -y
+   44  ifconfig -a
+   45  docker exec -it Ashok-c2
+   46  docker ps -a -q
+   47  docker ps -a -q | wc -l
+   48  docker ps -a
+   49  docker pull nginx
+   50  docker image
+   51  docker images
+   52  cd /var/lib/docker/image/overlay2/imagedb/content/
+   53  ls -lrt
+   54  cd sha256/
+   55  ls -lrt
+   56  pwd
+   57  cd ~
+   58  docker run -d --name=Ashokc2 nginx
+   59  docker export Ashokc2  Ashokc2.tar
+   60  docker export Ashokc2 > Ashokc2.tar
+   61  ls -lrt
+   62  docker import Ashokc2.tar
+   63  docker run -d --name=Ashokc3 ad7105c015927a4c bash
+   64  ls -lrt
+   65  docker import Ashokc2.tar
+   66  docker images
+   67  docker run -d --name=Ashokc4 sleep 3000
+   68  docker run -d --name=Ashokc4 d3fec6962df2 sleep 3000
+   69  ps -a
+   70  history
+
+
+--------------
+  857  cd /var/lib/docker/
+  858  ls
+  859  cd image/
+  860  ls -lrth
+  861  cd overlay2/
+  862  ls -lrth
+  863  cd imagedb/
+  864  ls
+  865  cd content/
+  866  ls -lrth
+  867  cd sha256/
+  868  ls -lrth
+  869  pwd
+  870  docker run -d --name=hemant-web1 -p 9099:80 kharataramesh/vadapavimages
+  871  docker run -d --name=hemant-web1 -p 9099:80 kharatramesh/vadapavimages
+  872  docker run -d --name=hemant-web1 -p 9099:80 kharatramesh/vadapavimages:pavbhaji
+  873  history
+  874  docker run -d --name=hemant-web2 -p 9089:80 httpd
+  875  docker run -d --name=hemant-db1 -p 2222:3306 -e MYSQL_ROOT_PASSWORD=123 mysql
+  876  docker ps -a
+  877  docker exec -it hemant-db1 bash
+  878  cd
+  879  docker exec -it hemant-db1 bash
+  880  dockerps -a
+  881  docker ps -a
+  882  mkdir /hemant-db1
+  883  ls /hemant-db1
+  884  docker run -d --name=hemant-db1 -v /hemant-db1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -p 2222:3306 mysql
+  885  ls /hemant-db1/
+  886  docker rm -f hemant-db1
+  887  ls /hemant-db1/
+  888  docker exec -it hemant-db1 bash
+  889  docker run -d --name=hemant-db1 -p 2222:3306 -e MYSQL_ROOT_PASSWORD=123 mysql
+  890  docker exec -it hemant-db1 bash
+  891  docker run -d --name=hemant-v1 -v vadapav:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 mysql
+  892  docker exec -it hemant-v1 bash
+  893  docker network create --drive=bridge --subnet=10.10.0.0/24 e-netl
+  894  docker network create --driver=bridge --subnet=10.10.0.0/24 e-netl
+  895  brctl show
+  896  docker inspect e-net1
+  897  docker network create --driver=bridge --subnet=10.10.0.0/24 e-net2
+  898  docker network create --driver=bridge --subnet=10.11.0.0/24 e-net10
+  899  brctl show
+  900  docker inspect e-net10
+  901  docker run -d --name=c88  --network=e-net10 --ip=10.11.0.0 --hostname=hemant.co.in --memory=10M --cpu=10.11.00
+  902  docker run -d --name=c88  --network=e-net10 --ip=10.11.0.0 --hostname=hemant.co.in --memory=10M
+  903  docker run -d --name=c88  --network=e-net10 --ip=10.11.0.0 --hostname=hemant.co.in --memory=10M --cpu="200" httpd
+  904  docker run -d --name=c88  --network=e-net10 --ip=10.11.0.0 --hostname=hemant.co.in --memory=10M httpd
+  905  docker run -d --name=c89  --network=e-net10 --ip=10.11.0.0 --hostname=hemant.co.in --memory=10M httpd
+  906  docker network create --driver=bridge --subnet=11.11.0.0/24 e-net20
+  907  docker network ls
+  908  docker run -d --name=hem1 --hostname=hemant.com --network=e-net20 --memory=10M --ip=10.10.10.10 httpd
+  909  docker run -d --name=hem1 --hostname=hemant.com --network=e-net20 --memory=10M --ip=100.0.0.100 httpd
+  910  docker run -d --name=hem1 --hostname=hemant.com --network=e-net20 --memory=10M --ip=102.0.0.150 httpd
+  911  history
+  912  docker volume create s1
+  913  docker volume ls
+  914  docker run -d --name=siba-v1 -v s1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=345 mysql
+  915  docker volume ls
+  916  docker exec -it siba-v1 bash
+  917  ip a s
+  918  ip
+  919  ip a s
+  920  brctl show
+  921  docker network create --driver=bridge --subnet=91.91.0.0/24 e-net22
+  922  brctl show
+  923  docker inspect e-net22
+  924  docker run -d -name=c22 --network=e-net22 --ip=91.91.0.91 -hostname=host.siba.com -memory=25M -cpus="0002" httpd
+  925  docker run -d --name=c22 --network=e-net22 --ip=91.91.0.91 -hostname=host.siba.com -memory=25M -cpus="0002" httpd
+  926  docker run -d --name=c22 --network=e-net22 --ip=91.91.0.91 -hostname=host.siba.com -memory=25M --cpus="0002" httpd
+  927  docker run -d --name=c22 --network=e-net22 --ip=91.91.0.91 --hostname=host.siba.com --memory=25M --cpus="0002" httpd
+  928  brctl show
+  929  docker inspect e-net22
+  930  docker stats e-net22
+  931  docker stats c22
+  932  ip a s
+  933  history
+  934  docker exec c22 hostname
+  935  docker stats c22
+  936  docker exec c22 hostname
+  937  clear
+  938  docker ps -a
+  939  docker rm -f $(docker ps -a -q)
+  940  clear
+  941  ip a s
+  942  clear
+  943  brctl show
+  944  apt install bridge-utils
+  945  clear
+  946  brctl show
+  947  docker run -d --name=c1 httpd
+  948  brctl show
+  949  ip a s
+  950  docker run -d --name=c2 httpd
+  951  ip a s
+  952  brctl show
+  953  docker inspect c1 | grep -i ipadd
+  954  docker inspect c2 | grep -i ipadd
+  955  lear
+  956  clear
+  957  docker network create --driver=bridge --subnet=90.90.0.0/24 e-net1
+  958  brctl show
+  959  docker inspect e-net1
+  960  history
+  961  clear
+  962  docker run -d --name=c3 --network=e-net1 --ip=99.99.0.99 --hostname=dosa.samosa.com --memory=20M --cpus="0.0001" httpd
+  963  docker run -d --name=c4 --network=e-net1 --ip=99.99.0.99 --hostname=dosa.samosa.com --memory=20M --cpus="0.0001" httpd
+  964  docker network ls
+  965  history
+  966  docker run -d --name=c4 --network=e-net1 --ip=90.90.0.99 --hostname=dosa.samosa.com --memory=20M --cpus="0.0001" httpd
+  967  docker run -d --name=c4 --network=e-net1 --ip=90.90.0.99 --hostname=dosa.samosa.com --memory=20M --cpus="0.001" httpd
+  968  docker run -d --name=c5 --network=e-net1 --ip=90.90.0.91 --hostname=dosa.samosa.com --memory=20M --cpus="0.001" httpd
+  969  docker run -d --name=c4 --network=e-net1 --ip=90.90.0.99 --hostname=dosa.samosa.com --memory=20M --cpus="0001" httpd
+  970  docker run -d --name=c5 --network=e-net1 --ip=90.90.0.100 --hostname=dosa.samosa.com --memory=20M --cpus="0001" httpd
+  971  docker run -d --name=c99 --network=e-net1 --ip=90.90.0.100 --hostname=dosa.samosa.com --memory=20M --cpus="0001" httpd
+  972  docker inspect c99 | grep -i ipadd
+  973  curl "90.90.0.100"
+  974  docker exec c99 hostname
+  975  docker exec c99 date
+  976  docker exec c99 pwd
+  977  docker exec c99 uptime
+  978  docker exec c99 df
+  979  docker stats c99
+  980  history
+  981  history
+  982  docker ps -a
+  983  docker run -d --name=varsha-db1 -p 7765:3306 -e MYSQL_ROOT_PASSWORD=123 mysql
+  984  docker ps -a | grep - i varsha
+  985  docker ps -a | grep - i varsha-db1
+  986  docker exec -it varsha-db1 bash
+  987  mkdir /varsha-db1file
+  988  ls /varsha-db1file/
+  989  ls
+  990  docker run -d --name=varsha-db2 -v /varsha-db1file: /var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -p 5555:3306 mysql
+  991  docker run -d --name=varsha-db2 -v /varsha-db1file:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -p 5555:3306 mysql
+  992  ls /varsha-db1file/
+  993  cd mysql
+  994  # here we are mounting container into our file /varsha-db1file
+  995  history
+  996  docker ps -a | varsha-db2
+  997  docker ps -a | grep -i varsha-db2
+  998  docker run -d --name=varsha_docker -v FromDocker_varsha:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 mysql
+  999  ddcker volumnes | grep -i varsha
+ 1000  ddcker volumnes | grep -i  FromDocker_varsha
+ 1001  docker volumnes | grep -i  FromDocker_varsha
+ 1002  docker volumne | grep -i  FromDocker_varsha
+ 1003  docker volumne ls
+ 1004  docker volume ls
+ 1005  cd /var/lib/docker/volumes/data
+ 1006  cd /var/lib/docker/volumes
+ 1007  ls -lrth
+ 1008  ls -lrth | grep -i FromDocker_varsha
+ 1009  pwd
+ 1010  history
+ 1011  ls -lrth
+ 1012  cd FromDocker_varsha
+ 1013  ls -lrth
+ 1014  cd data
+ 1015  cd ~
+ 1016  df -kh
+ 1017  cd /var/lib/docker/volumes/FromDocker_varsha
+ 1018  cd _data
+ 1019  ls -lrth
+ 1020  cd ~
+ 1021  ls /varsha-db1file/
+ 1022  pwd
+ 1023  # how to create a bridge
+ 1024  docker network create --driver=bridge --subnet=99.99.0.0/24 b-varsha
+ 1025  #show bridge
+ 1026  brctl show
+ 1027  docker inspect  b-varsha
+ 1028  docker run -d --name --network=b-varsha --ip=99.99.0.12 --hostname=autopilot.com --memory=2GB --cpus="0.01" httpd
+ 1029  docker run -d --name --network=b-varsha --ip=99.99.0.56 --hostname=autopilot.com --memory=2GB --cpus="0.01" httpd
+ 1030  docker run -d --name=varshaDB3 --network=b-varsha --ip=99.99.0.56 --hostname=autopilot.com --memory=2GB --cpus="0.01" httpd
+ 1031  docker inspect varshaDB3
+ 1032  docker stats varshaDB3
+ 1033  ip a s
+ 1034  history
+ 1035  docker inspect varshaDB3
+ 1036  docker exec varshaDB3 hostname
+ 1037  hostnamectl
+ 1038  free -h
+ 1039  systemctl status docker
+ 1040  docker ps -a
+ 1041  docker ps
+ 1042  docker search httpd --limit=10
+ 1043  docker search httpd --limit=10 -f is_official=true
+ 1044  docker search httpd --limit=10 -f is-official=true
+ 1045  docker search mysql --limit=10 -f is-official=true
+ 1046  docker pull percona
+ 1047  docker image
+ 1048  docker images
+ 1049  history
+ 1050  docker images
+ 1051  docker container create --name =trilok -c1 percona
+ 1052  docker container create --name=trilok -c1 percona
+ 1053  docker ps -1
+ 1054  docker ps -a
+ 1055  docker start trilok
+ 1056  docker start trilok-c1
+ 1057  docker start trilok
+ 1058  docker rm trilok
+ 1059  docker container create --name=trilok -c1 mysql
+ 1060  docker start trilok
+ 1061  docker rm trilok
+ 1062  docker container create --name=trilok -c1 httpd
+ 1063  docker ps -a
+ 1064  docker start trilok
+ 1065  docker ps -a
+ 1066  docker rm trilok
+ 1067  docker ps -a
+ 1068  docker container create --name=trilok-c1 httpd
+ 1069  docker ps -a
+ 1070  docker start trilok
+ 1071  docker rm trilok
+ 1072  docker container create --name=trilok httpd
+ 1073  docker start trilok
+ 1074  docker ps
+ 1075  docker stop trilok
+ 1076  docker ps
+ 1077  docker start trilok
+ 1078  docker pause trilok
+ 1079  docker ps
+ 1080  docker unpause trilok
+ 1081  docker ps
+ 1082  docker ps -a
+ 1083  docker ps -a  |grep -i trilok
+ 1084  top
+ 1085  docker run -d --name=trilok-c5
+ 1086  docker run -d --name=trilok-c5 httpd
+ 1087  #how to fine IP address of container
+ 1088  docker inspect tilok
+ 1089  docker inspect tilok-c5
+ 1090  docker inspect trilok-c5
+ 1091  docker inspect trilok-c5 |grep -i ipaddr
+ 1092  curr 172.17.0.10
+ 1093  curl 172.17.0.10
+ 1094  docker inspect trilok-c1 |grep -i ipaddr
+ 1095  docker inspect trilok |grep -i ipaddr
+ 1096  curl 172.17.0.4
+ 1097  #CPU utilization RAM
+ 1098  docker stat
+ 1099  docker stat trilok-c5
+ 1100  docker stats trilok-c5
+ 1101  docker stats trilok-c1
+ 1102  docker logs trilok-c1
+ 1103  docker logs trilok-c5
+ 1104  docker inspect trilok-c5
+ 1105  docker exec -it trilok-c5 bash
+ 1106  curl 172.17.0.10
+ 1107  docker ps -a -q
+ 1108  docker ps -a -q |wc -l
+ 1109  #docker rm -f ${docket ps -a -q }
+ 1110  docker images
+ 1111  cd /var/lib/docker/
+ 1112  ls -lrt
+ 1113  cd image
+ 1114  ls -lrt
+ 1115  cd overlay2/
+ 1116  ls -lrt
+ 1117  cd imagedb/
+ 1118  ls -lrt
+ 1119  cd metadata/
+ 1120  ls -lrt
+ 1121  cd sha256/
+ 1122  ls -lrt
+ 1123  cd ../../../
+ 1124  cd imagedb/content/sha256/
+ 1125  ls -lrt
+ 1126  docker image
+ 1127  cd ~
+ 1128  docker image
+ 1129  docker images
+ 1130  cd -
+ 1131  ls -lrt
+ 1132  cd -
+ 1133  history
+ 1134  docker images
+ 1135  top
+ 1136  docker run -d --name=trilok-c6 -p 9092:80 https
+ 1137  docker run -d --name=trilok1 -p 9081:80 https
+ 1138  docker run -d --name=trilok1 -p 9081:80 httpd
+ 1139  docker ps -a
+ 1140  docker ps -a -q
+ 1141  docker run -d --name=trilok-db -p 7771:3306 -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1142  docker run -d --name=trilok-db -p 7785:3306 -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1143  docker run -d --name=trilok-db1 -p 7786:3306 -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1144  docker ps -a
+ 1145  docker exec -it trilok-db1 bash
+ 1146  mkdir /trilok-db1
+ 1147  ls  /trilok-db1
+ 1148  ls -lrt
+ 1149  pwd
+ 1150  docker run -d --name=trilok-db1 -v /trilok-db1:/var/lib/mqsql -e MYSQL_ROOT_PASSWORD=123 -p 7770:3306 mqsql
+ 1151  cd /trilok-db1
+ 1152  docker run -d --name=trilok-db1 -v /trilok-db1:/var/lib/mqsql -e MYSQL_ROOT_PASSWORD=123 -p 7770:3306 mqsql
+ 1153  docker run -d --name=trilok-db1 -v /trilok-db1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -p 7770:3306 mqsql
+ 1154  docker run -d --name=trilok-db1 -v /trilok-db1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -p 7768:3306 mqsql
+ 1155  docker run -d --name=trilok-db1 -v /trilok-db1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -p 7768:3306 mysql
+ 1156  mqsql -u root -p
+ 1157  mysql -u root
+ 1158  mysql -u root -p
+ 1159  mqsql
+ 1160  mysql -u root -p
+ 1161  cd ../
+ 1162  docker exec -it trilok-db1 bash
+ 1163  cd /trilok-db1
+ 1164  ls -lrt
+ 1165  cd /var/lib/docker/
+ 1166  ls -lrt
+ 1167  cd volumes/
+ 1168  ls -lrt
+ 1169  cd e1
+ 1170  ls -lrt
+ 1171  cd _data
+ 1172  top
+ 1173  pwd
+ 1174  cd ../../../
+ 1175  cd ../
+ 1176  ip a s
+ 1177  brctl show
+ 1178  docker run -d --name=trilok-c1 httpd
+ 1179  brctl show
+ 1180  docker network create --drive=bridge --subnet=90.90.0.0/24 e-net15
+ 1181  docker network create --driver=bridge --subnet=90.90.0.0/24 e-net15
+ 1182  docker network create --driver=bridge --subnet=90.95.0.0/24 e-net15
+ 1183  brctl show
+ 1184  docker inspect e-net15
+ 1185  docker run -d --name=trilok-c10 --network=e-net15 --ip=87.87.0.99 --hostname=trilok.gupta.com --memory=25M --cpu="0009" httpd
+ 1186  docker run -d --name=trilok-c10 --network=e-net15 --ip=87.87.0.99 --hostname=trilok.gupta.com --memory=25M --cpus="0009" httpd
+ 1187  docker run -d --name=trilok-c10 --network=e-net15 --ip=87.87.0.99 --hostname=trilok.gupta.com --memory=25M --cpus="0001" httpd
+ 1188  docker run -d --name=trilok-c10 --network=e-net15 --ip=90.96.0.99 --hostname=trilok.gupta.com --memory=25M --cpus="0001" httpd
+ 1189  docker run -d --name=trilok-c10 --network=e-net15 --ip=90.99.0.91 --hostname=trilok.gupta.com --memory=25M --cpus="0001" httpd
+ 1190  docker run -d --name=trilok-c10 --network=e-net15 --ip=90.90.0.105 --hostname=trilok.gupta.com --memory=25M --cpus="0001" httpd
+ 1191  docker run -d --name=trilok-c10 --network=e-net15 --ip=90.95.0.99 --hostname=trilok.gupta.com --memory=25M --cpus="0001" httpd
+ 1192  docker status
+ 1193  ip a s
+ 1194  docker inspact e-net15
+ 1195  docker stats trilok-c10
+ 1196  history
+ 1197  docker stats trilok-c10
+ 1198  docker exec trilok-c10 hostname
+ 1199  ls
+ 1200  cd trainer
+ 1201  ls -lrt
+ 1202  cat 1.df
+ 1203  docker ps -a
+ 1204  docker run -d --name Pnegiweb -p 9050:80
+ 1205  docker run -d --name= Pnegiweb -p 9050:80
+ 1206  docker run -d --name= Pnegiweb -p 9050:80 kharatramesh/vadapavimages:vadapav
+ 1207  whoami
+ 1208  docker run -d --name=Pnegiweb -p 9050:80 kharatramesh/vadapavimages:vadapav
+ 1209  docker ps -a
+ 1210  clear
+ 1211  docker run -d --name=Pnegi_db -p 1525:3306 -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1212  docker ps -a
+ 1213  docker exec -it Pnegi_db bash
+ 1214  pwd
+ 1215  sudo -i
+ 1216  docker run -d --name=Prateek-v1 -v vadapav:/var/lib/mysql -e MYSQL_ROOR_PASSWORD+123 mysql
+ 1217  docker colume ls
+ 1218  docker volume ls
+ 1219  pwd
+ 1220  docker run -d --name=Prateek-v1 -v vadapav:/var/lib/mysql -e MYSQL_ROOR_PASSWORD=123 mysql
+ 1221  docker ps -a
+ 1222  docker rm -f Prateek-v1
+ 1223  docker volumes
+ 1224  docker volume ls
+ 1225  docker run -d --name=Prateek-v1 -v vadapav:/var/lib/mysql -e MYSQL_ROOR_PASSWORD=123 mysql
+ 1226  docker exec -it Prateek-v1 bash
+ 1227  clear
+ 1228  docker network create --driver=bridge --subnet=91.91.1.1/24 e-net15
+ 1229  docker network create --driver=bridge --subnet=90.90.0.1/24 e-net15
+ 1230  dockter network create --driver=bridge --subnet=99.99.0.0/24 e15-net
+ 1231  docker network create --driver=bridge --subnet=99.99.0.0/24 e15-net
+ 1232  docker network create --driver=bridge --subnet=97.97.0.0/24 e15-net
+ 1233  brctl show
+ 1234  docker brctl show
+ 1235  brtcl show
+ 1236  docker inspect e15-net
+ 1237  docker run -d --name=p15 --network=e15-net --ip=97.97.0.97 --hostname=pratee.negi.com --memory=20M --cpus="001" httpd
+ 1238  docker inspect p15| grep -i ipaddr
+ 1239  docker search httpd --limit=5
+ 1240  docker search mysql --limit=5 -f is-official=true
+ 1241  docker run -d --name varsha-c3
+ 1242  systemctl status docker
+ 1243  docker ps -a
+ 1244  docker run -d --name varsha-c3 httpd
+ 1245  docker ps -a | grep -i varsha-c3
+ 1246  #how to find ip address of container
+ 1247  docker inspect varsha-c3
+ 1248  docker inspect varsha-c3 | grep -i ipaddr
+ 1249  curl 172.17.0.15
+ 1250  history
+ 1251  #command line browser(curl) to see browser from CLI
+ 1252  history
+ 1253  docker images
+ 1254  docker ps -a
+ 1255  #to check CPU utilisation of container
+ 1256  docker stats varsha-c3
+ 1257  history
+ 1258  #to check logs of container
+ 1259  docker logs varsha-c3
+ 1260  docker start varsha-c3
+ 1261  docker exec -it varsha-c3 bash
+ 1262  history
+ 1263  curl 172.17.0.15
+ 1264  docker ps -a -q
+ 1265  docker rm -f $(docker ps -a -q)
+ 1266  # to delete all container in one go
+ 1267  history
+ 1268  docker images
+ 1269  #to remove image
+ 1270  docker rmi 67c2fc9e3d84
+ 1271  cd /var/lib/docker
+ 1272  ls
+ 1273  cd image/overlay2/imagedb/content/sha256/
+ 1274  cd ~
+ 1275  docker images
+ 1276  cd /var/lib/docker# cd image/overlay2/imagedb/content/sha256/
+ 1277  cd  /var/lib/docker/image/overlay2/imagedb/content/sha256/
+ 1278  ls
+ 1279  ls -lrth
+ 1280  # id of all images are in /var/lib/docker/image/overlay2/imagedb/content/sha256
+ 1281  history
+ 1282  cd ~
+ 1283  docker container create --name=varsha-c1 httpd
+ 1284  docker exec -it varsha-c1 bash
+ 1285  docker ps -a | grep -i varsha
+ 1286  docker start varsha-c1
+ 1287  mkdir varsha
+ 1288  ls -lrth
+ 1289  hisotry
+ 1290  history
+ 1291  docker run -d --name=varsh-web1 -p 9095:80 kharatramesh/vadapavimages:vadapav
+ 1292  docker run -d --name=varsha-web1 -p 9096:80 kharatramesh/vadapavimagdapav
+ 1293  docker run -d --name=trainer-web11 -p 9092:80 kharatramesh/vadapavimages:vadapav
+ 1294  docker images
+ 1295  docker run -d --name=trainer-db11 -p 7771:3306 -e MYSQL_ROOT_PASSWORD=1234 mysql
+ 1296  docker ps -a
+ 1297  docker run -d --name=himanshu-db11 -p 7771:3306 -e MYSQL_ROOT_PASSWORD=1234 mysql
+ 1298  docker run -d --name=himanshu-db11 -p 7770:3306 -e MYSQL_ROOT_PASSWORD=1234 mysql
+ 1299  docker ps -a
+ 1300  docker run -d --name=himanshu-db11 -p 7779:3306 -e MYSQL_ROOT_PASSWORD=1234 mysql
+ 1301  docker run -d --name=himanshu-db12 -p 7779:3306 -e MYSQL_ROOT_PASSWORD=1234 mysql
+ 1302  docker exec -it himanshu-db12 bash
+ 1303  mkdir /himanshu-db1/
+ 1304  ls /himanshu-db1/
+ 1305  docker run -d --name=himanshu-db1 -v /himanshu-db1:var/lib/mysql -p 7779:3306 -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1306  docker run -d --name=himanshu-db1 -v /himanshu-db1:/var/lib/mysql -p 7779:3306 -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1307  ls himanshu-db1
+ 1308  ls /himanshu-db1
+ 1309  docker exec -it himanshu-db1 bash
+ 1310  ls /himanshu-db1
+ 1311  ls
+ 1312  ls /himanshu-db1
+ 1313  clear
+ 1314  ls /himanshu-db1
+ 1315  docker exec -t trainer-v2 bash
+ 1316  docker run -d --name=trainer-v2 -v vadapav:var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1317  docker exec -t trainer-v2 bash
+ 1318  dockers ps -a
+ 1319  dockers ps -a -q
+ 1320  docker ps -a -q
+ 1321  docker ps -a
+ 1322  docker ps -a -q
+ 1323  ip a s
+ 1324  docker network create --driver=bridge --subnet=90.90.0.0/24 e-net11
+ 1325  docker network create --driver=bridge --subnet=91.90.0.0/24 e-net11
+ 1326  brctl show
+ 1327  docker inspect e-net11
+ 1328  docker run -d --name=c10 --network=e-net1 --ip=91.90.0.99 --hostname=dosa.samosa.com --memory=20M --cpus="1" httpd
+ 1329  docker run -d --name=c10 --network=e-net11 --ip=91.90.0.99 --hostname=dosa.samosa.com --memory=20M --cpus="1" httpd
+ 1330  brctl show
+ 1331  docker network ls
+ 1332  docker stats e-net11
+ 1333  docker stats cq0
+ 1334  docker stats c10
+ 1335  ip a s
+ 1336  docker exec c10 hostname
+ 1337  docker stats c10
+ 1338  clear
+ 1339  mkdir /himanshu
+ 1340  touch 1.df
+ 1341  touch one.dockerfile
+ 1342  touch dockerfile
+ 1343  ,s
+ 1344  ls
+ 1345  mv 1.df dockerfile one.dockerfile /himanshu
+ 1346  cd /home/
+ 1347  cd /himanshu
+ 1348  ls
+ 1349  history
+ 1350  ip a s
+ 1351  clear
+ 1352  # ip a s
+ 1353  # docker network create --driver=bridge --subnet=100.0.0.0/24 e-vnet2
+ 1354  # docker network ls
+ 1355  # docker run -d --name=n1 --hostname=dosa.com --network=e-vnet2 --memory=15M --ip=100.0.0.100 httpd
+ 1356  # docker inspect n1 | grep -i ipaddr
+ 1357  # brctl show
+ 1358  # ip a s
+ 1359  # docker exec n1 hostname
+ 1360  # docker stats n1
+ 1361  mkdir /trainer
+ 1362  cd /trainer
+ 1363  ls
+ 1364  touch 1.df
+ 1365  ls
+ 1366  touch one.dockerfile
+ 1367  touch dockerfile
+ 1368  ls
+ 1369  clear
+ 1370  vi 1.df
+ 1371  cat 1.df
+ 1372  touch 1.txt 2.txt index.html
+ 1373  tar -cvf 1.tar *
+ 1374  ls
+ 1375  vi index.html
+ 1376  clear
+ 1377  docker images
+ 1378  docker images -q
+ 1379  docker rmi -f $(docker images -q)
+ 1380  docker ps -a
+ 1381  docker rm -f $(docker ps -a -q)
+ 1382  clear
+ 1383  docker ps -a
+ 1384  docker images
+ 1385  docker rmi httpd
+ 1386  docker prune network
+ 1387  docker network prune
+ 1388  docker volume prune
+ 1389  docker system prune
+ 1390  clear
+ 1391  docker build . -f 1.df -t mywebserver:v1.0
+ 1392  clear
+ 1393  docker images
+ 1394  docker run -d --name=chandan -p 9090:80 mywebserver:v1.0
+ 1395  docker ps -a
+ 1396  vi 1.df
+ 1397  docker volume ls
+ 1398  docker exec -it chandan bash
+ 1399  docker run -d --name=Neeraj-web01 -p 8181:80 kharatramesh/vadapavimage:vadapav
+ 1400  docker run -d --name=Neeraj-web01 -p 9097:80 kharatramesh/vadapavimage:vadapav
+ 1401  docker run -d --name=Neeraj-web01 -p 9090:80 kharatramesh/vadapavimage:vadapav
+ 1402  docker run -d --name=Neeraj-web01 -p 9099:80 kharatramesh/vadapavimage:vadapav
+ 1403  docker run -d --name=Neeraj-web01 -p 9099:80 kharatramesh/vadapavimages:vadapav
+ 1404  docker run -d --name=Neeraj-web01 -p 8181:80 kharatramesh/vadapavimages:vadapav
+ 1405  docker run -d --name=Neeraj-web01 -p 1211:80 kharatramesh/vadapavimages:vadapav
+ 1406  docker run -d --name=ericsson-web01 -p 1211:80 kharatramesh/vadapavimages:vadapav
+ 1407  docker run -d --name=ericsson-web01 -p 1718:80 kharatramesh/dosaimages:dosa
+ 1408  docker run -d --name=testing-db1 1212:3333 -e MYSQL_ROOT_PASWWORD=123 mysql
+ 1409  docker run -d --name=testing-db1 7777:3306 -e MYSQL_ROOT_PASWWORD=123 mysql
+ 1410  docker ps -a
+ 1411  docker run -d --name=testing-db1 1212:3306 -e MYSQL_ROOT_PASWWORD=123 mysql
+ 1412  docker run -d --name=testing-db1 -p 1212:3306 -e MYSQL_ROOT_PASWWORD=123 mysql
+ 1413  docker exec -it testing-db1 bash
+ 1414  docker ps -a|grep- i testing
+ 1415  docker ps -a
+ 1416  docker start testing-db1
+ 1417  docker exec -it testing-db1 bash
+ 1418  docker ps -a
+ 1419  docker start testing-db1
+ 1420  docker stop testing-db1
+ 1421  docker start testing-db1
+ 1422  docker ps -a
+ 1423  history
+ 1424  docker ps -a
+ 1425  docker start testing-db1
+ 1426  docker ps -a
+ 1427  docker logs testing-db1
+ 1428  history
+ 1429  docker run -d --name=testing-db1 -p 1212:3306 -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1430  docker run -d --name=testing-db1 -p 1111:3306 -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1431  docker run -d --name=testing1-db1 -p 1111:3306 -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1432  docker exec -it testing1-db1 bash
+ 1433  mkdir /databackup
+ 1434  docker run -d --name=testing-db1 -v /databackup:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -P 1515:3306 mysql
+ 1435  docker run -d --name=testing-db1 -v /databackup:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -p 1515:3306 mysql
+ 1436  docker exec -it testing-db1 bash
+ 1437  cd /databackup/
+ 1438  ls -lrth
+ 1439  docker start testing-db1
+ 1440  docker log testing-db1
+ 1441  docker logs testing-db1
+ 1442  df -kh
+ 1443  brctl show
+ 1444  # brctl show
+ 1445  history
+ 1446  docker inspect c2 | grep -i ipadd
+ 1447  docker exec c99 hostname
+ 1448  docker exec c* hostname
+ 1449  docker network create --driver=bridge --subnet 12.16.0.11/24 CS1
+ 1450  docker network create --driver=bridge --subnet 12.16.0.0/24 CS1
+ 1451  brctl show
+ 1452  docker inspect CS1
+ 1453  docker inspect CS1 | grep -i ipadd
+ 1454  docker inspect CS1 | grep -i subnet
+ 1455  docker run -d --name=neeraj-c1 --network=CS1 --ip=12.16.0.0 --hostname=learning.docker.com --memory=13M --cpus="1" httpd
+ 1456  docker run -d --name=neeraj-c1 --network=CS1 --ip=12.16.99 --hostname=learning.docker.com --memory=13M --cpus="1" httpd
+ 1457  docker run -d --name=neeraj-c1 --network=CS1 --ip=12.16.0.99 --hostname=learning.docker.com --memory=13M --cpus="1" httpd
+ 1458  docker run -d --name=neeraj-c3 --network=CS1 --ip=12.16.0.99 --hostname=learning.docker.com --memory=13M --cpus="1" httpd
+ 1459  docker exec neeraj-c3 hostname
+ 1460  docker exec neeraj-c3 stats
+ 1461  docker exec neeraj-c3 top
+ 1462  docker stats neeraj-c3
+ 1463  history
+ 1464  docker stats neeraj-c3
+ 1465  ip a s
+ 1466  history
+ 1467  docker network create --driver=bridge --subnet=90.90.0.0/24 e-net5
+ 1468  brctl show
+ 1469  docker network create --driver=bridge --subnet=90.90.0.8/24 e-net5
+ 1470  brctl show
+ 1471  docker network create --driver=bridge --subnet=90.90.0.0/24 e-net5
+ 1472  docker network create --driver=bridge --subnet=70.70.0.0/24 e-net5
+ 1473  brctl show
+ 1474  docker run -d --name=cont1 --network=e-net5 --ip=70.70.0.0 --hostname=dosa.samosa.com --memory=20M --cpus="0.0001" httpd
+ 1475  docker run -d --name=cont1 --network=e-net5 --ip=70.70.0.0 --hostname=ashok.com --memory=20M --cpus="0.0001" httpd
+ 1476  docker run -d --name=cont1 --network=e-net6 --ip=70.70.0.0 --hostname=ashok2.com --memory=20M --cpus="0.0001" httpd
+ 1477  docker run -d --name=cont2 --network=e-net5 --ip=70.70.0.0 --hostname=ashok3.com --memory=20M --cpus="0.0001" httpd
+ 1478  clear
+ 1479  mkdir /hospital
+ 1480  cd /hospital/
+ 1481  git
+ 1482  clear
+ 1483  git fetch https://github.com/kharatramesh/hospital.git
+ 1484  git init
+ 1485  git fetch https://github.com/kharatramesh/hospital.git
+ 1486  ls
+ 1487  git clone https://github.com/kharatramesh/hospital.git
+ 1488  ls
+ 1489  cd hospital/
+ 1490  ls
+ 1491  pwd
+ 1492  clear
+ 1493  cd ~
+ 1494  docker images
+ 1495  docker run -d --name=h1 -v /hospital/hospital:/var/www/html -p 9099:80 mywebserver:v1.0
+ 1496  docker ps -a
+ 1497  docker images
+ 1498  docker tag mywebserver:v1.0 kharatramesh/ericsson5:ericsson-webserver
+ 1499  docker images
+ 1500  docker push kharatramesh/ericsson5:ericsson-webserver
+ 1501  docker login
+ 1502  docker push kharatramesh/ericsson5:ericsson-webserver
+ 1503  history
+ 1504  cd /trainer
+ 1505  ls
+ 1506  cat 1.df
+ 1507  history
+ 1508  clear
+ 1509  docker network create --driver=deepak-- subnet=80.80.0.0/24 e-neeraj1
+ 1510  docker network create --driver=deepak --subnet=80.80.0.0/24 e-neeraj1
+ 1511  docker network create --driver=deepak --subnet=80.80.0.0/24 e-let1
+ 1512  docker network create --driver=deepak --subnet=11.11.0.78/24 e-let1
+ 1513  docker network create --driver=deepak --subnet=11.11.0.0/24 e-let1
+ 1514  docker network create --driver=bridge --subnet=12.12.0.0/24 e-pet1
+ 1515  brctl show
+ 1516  docker inspect e-pet1
+ 1517  clear
+ 1518  docker run -d --name=deepak-c5 --network=e-pet1 --ip=12.12.0.2 --hostname=learning.docker.com --memory=15M --cpus="1" httpd
+ 1519  e-pet1 hostname
+ 1520  docker exec e-pet1 hostname
+ 1521  docker exec deepak-c5 hostname
+ 1522  docker exec deepak-c5 stats
+ 1523  docker stats deepak-c5
+ 1524  ip a s
+ 1525  clear
+ 1526  history
+ 1527  docker run -d --name=kt-web1 -p 9070:80 kajoltyagi/vadapavimages:vadapav
+ 1528  docker run -d --name=kt-web1 -p 9070:80 kharatramesh/vadapavimages:vadapav
+ 1529  docker run -d --name=kt-web1 -p 9070:80 kharatramesh/pavbhajiimages:pavbhaji
+ 1530  docker run -d --name=kt-web1 -p 9070:80 kharatramesh/vadapavimages:pavbhaji
+ 1531  docker run -d --name=kajol-db1 -p 7777:3306 -e MYSQL_ROOT_PASSWORD=54321 mysql
+ 1532  docker run -d --name=kajol-db1 -p 7760:3306 -e MYSQL_ROOT_PASSWORD=54321 mysql
+ 1533  docker run -d --name=kaj-db1 -p 7760:3306 -e MYSQL_ROOT_PASSWORD=54321 mysql
+ 1534  docker ps -a
+ 1535  docker exec -it kaj-db1 bash
+ 1536  cd /var/lib/mysql
+ 1537  docker exec -it kaj-db1 bash
+ 1538  mkdir /kt-db2
+ 1539  ls /kt-db2/
+ 1540  ls /kt-db2
+ 1541  ls
+ 1542  mkdir kt-db2
+ 1543  sl
+ 1544  ls
+ 1545  docker run -d --name=kajol-db2 -v /kt-db2:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=54321 -p 7762:3306 mysql
+ 1546  ls
+ 1547  cd /kt-db2
+ 1548  cd kajol-db2
+ 1549  ls
+ 1550  docker exec -it kt-db2 bash
+ 1551  docker exec -it kajol-db2 bash
+ 1552  docker ps
+ 1553  docker logs kajol-db2
+ 1554  cd
+ 1555  brctl show
+ 1556  docker netwrok create --driver=bridge --subnet=90.90.0.0/24 net2
+ 1557  docker netwrok create --driver=bridge --subnet=90.90.0.0/24 e-net2
+ 1558  docker network create --driver=bridge --subnet=90.90.0.0/24 net2
+ 1559  docker network create --driver=bridge --subnet=90.90.0.1/24 net2
+ 1560  docker network create --driver=bridge --subnet=92.92.0.0/24 net2
+ 1561  brctl show
+ 1562  docker inspect net2
+ 1563  docker run -d --name=c3 --network=net2 --ip=92.92.0.0 --hostname=dosa.samosa.com --memory=20M --cpus="0.0001" httpd
+ 1564  docker run -d --name=c3 --network=net2 --ip=92.92.0.0 --hostname=dosa.samosa.com --memory=20M --cpus="0.0002" httpd
+ 1565  docker run -d --name=k3 --network=net2 --ip=92.92.0.0 --hostname=dosa.samosa.com --memory=20M --cpus="0.0002" httpd
+ 1566  docker run -d --name=k3 --network=net2 --ip=92.92.0.92 --hostname=dosa.samosa.com --memory=20M --cpus="0.0002" httpd
+ 1567  docker run -d --name=993 --network=net2 --ip=92.92.0.92 --hostname=dosa.samosa.com --memory=20M --cpus="0.0002" httpd
+ 1568  docker run -d --name=993 --network=net2 --ip=92.92.0.92 --hostname=dosa.samosa.com --memory=20M --cpus="0002" httpd
+ 1569  docker run -d --name=k93 --network=net2 --ip=92.92.0.92 --hostname=dosa.samosa.com --memory=20M --cpus="0002" httpd
+ 1570  docker inspect k93|grep -i IP
+ 1571  docker inspect k93|grep -i IPaddress
+ 1572  docker images
+ 1573  ls
+ 1574  history
+ 1575  ls
+ 1576  ls -a
+ 1577  vi .bash_history
+ 1578  cd /trainer
+ 1579  ls
+ 1580  cat 1.df
+ 1581  ls
+ 1582  tar -cvf 1.tar *
+ 1583  ls
+ 1584  system ctl status docker
+ 1585  systemctl status docker
+ 1586  docker ps -a
+ 1587  docker search httpd --limit=5
+ 1588  sudo kubectl get namespaces
+ 1589  docker images
+ 1590  docker pull mariadb
+ 1591  docker ps -a
+ 1592  docker images
+ 1593  docker search httpd --limit=5
+ 1594  docker pull nginx
+ 1595  docker images
+ 1596  docker container create --name=alpha-c5 mariadb
+ 1597  docker images
+ 1598  docker ps -a
+ 1599  docker start alpha-c5
+ 1600  docker ps -a
+ 1601  docker start alpha-c5
+ 1602  docker ps -a
+ 1603  docker start alpha-c5
+ 1604  docker ps -a
+ 1605  docker stop alpha-c5
+ 1606  docker ps -a
+ 1607  docker start alpha-c6
+ 1608  docker container create --name=alpha-c6 mariadb
+ 1609  docker ps -a
+ 1610  docker start alpha-c6
+ 1611  docker ps -a
+ 1612  docker stop alpha-c6
+ 1613  docker ps -a
+ 1614  docker start alpha-c6
+ 1615  docker ps -a
+ 1616  docker rm alpha-c5
+ 1617  docker rm alpha-c6
+ 1618  docker ps -a
+ 1619  docker ps
+ 1620  history
+ 1621  df
+ 1622  docker run -d --name==bravo mariadb
+ 1623  docker run -d --name==bravo-c4 mariadb
+ 1624  docker ps
+ 1625  docker ps -a
+ 1626  docker images
+ 1627  docker run -d --name=bravo-c4 mariadb
+ 1628  docker images
+ 1629  docker ps
+ 1630  docker ps |grep -i maria
+ 1631  docker ps |grep -i mariadb
+ 1632  docker ps -a|grep -i mariadb
+ 1633  docker ps |grep -i mariadb
+ 1634  docker ps
+ 1635  docker images
+ 1636  docker run -d --name=bravo-c4 mariadb
+ 1637  docker ps |grep -i mariadb
+ 1638  docker ps -a|grep -i mariadb
+ 1639  docker inspect bravo-c4
+ 1640  docker inspect bravo-c4 |grep -i ip
+ 1641  docker images
+ 1642  history
+ 1643  docker container create --name=alpha-c6 mariadb
+ 1644  docker start alpha-c6
+ 1645  docker inspect alpha-c6 |grep -i ip
+ 1646  docker inspect alpha-c6 |grep -i ipadd
+ 1647  docker images
+ 1648  docker ps |grep -i mariadb
+ 1649  history
+ 1650  docker ps -a
+ 1651  docker container create --name=alpha-c6 mariadb
+ 1652  docker ps -a
+ 1653  docker container create --name=alpha-c3 mariadb
+ 1654  docker ps -a
+ 1655  docker inspect alpha-c6 |grep -i ipadd
+ 1656  docker inspect alpha-c3 |grep -i ipadd
+ 1657  docker inspect alpha-c3
+ 1658  docket start trainer-c3
+ 1659  docket stats trainer-c3
+ 1660  dockee stats trainer-c3
+ 1661  docker stats trainer-c3
+ 1662  docker ps -a
+ 1663  docker start Ashok-c5
+ 1664  docker ps -a
+ 1665  docker start Ashok-c5
+ 1666  docker ps -a
+ 1667  docker logs alpha-c3
+ 1668  docker logs trainer-c3
+ 1669  docker ps -a
+ 1670  docker exec -it alpha-c3 bash
+ 1671  docker exec -it trainer-c5 bash
+ 1672  curl  172.17.0.16
+ 1673  docker ps -a
+ 1674  docker ps -a -q
+ 1675  history |grep -i rm
+ 1676  docker rm 91406f5455c2 0b9407bbd4e3 bfd66f954985 f02aa6868d97 71fae2016952 33a9411bfd73 0619619a9905 dc6f76d6664c a11167eeb42b c957d106f695 2fdbe20b641b d85dc763230c 285618cb98e1 dee2c0b0caa4 d8ce982ed71f f856ef14012c e4a5d5a4817c a62020ea14aa 40be1d7de77a 0eef393f31ef 34d0d9b40bf2 71638c506cfd bc20fd3d05c6
+ 1677  docker stop 91406f5455c2 0b9407bbd4e3 bfd66f954985 f02aa6868d97 71fae2016952 33a9411bfd73 0619619a9905 dc6f76d6664c a11167eeb42b c957d106f695 2fdbe20b641b d85dc763230c 285618cb98e1 dee2c0b0caa4 d8ce982ed71f f856ef14012c e4a5d5a4817c a62020ea14aa 40be1d7de77a 0eef393f31ef 34d0d9b40bf2 71638c506cfd bc20fd3d05c6
+ 1678  docker rm 91406f5455c2 0b9407bbd4e3 bfd66f954985 f02aa6868d97 71fae2016952 33a9411bfd73 0619619a9905 dc6f76d6664c a11167eeb42b c957d106f695 2fdbe20b641b d85dc763230c 285618cb98e1 dee2c0b0caa4 d8ce982ed71f f856ef14012c e4a5d5a4817c a62020ea14aa 40be1d7de77a 0eef393f31ef 34d0d9b40bf2 71638c506cfd bc20fd3d05c6
+ 1679  docker ps -a -q
+ 1680  cd /var/lib/docker
+ 1681  ls -lrth
+ 1682  ls -a
+ 1683  cd image/
+ 1684  ls -a
+ 1685  cd overlay2/
+ 1686  ls -a
+ 1687  cd imagedb/
+ 1688  ls -a
+ 1689  cd metadata/
+ 1690  ls -a
+ 1691  cd sha256/
+ 1692  ls -a
+ 1693  ls -lrth
+ 1694  ls -a
+ 1695  ls -l
+ 1696  cd
+ 1697  cd ../
+ 1698  cd /var/lib/docker/image/overlay2/imagedb/content/sha256/
+ 1699  ls -lrth
+ 1700  cat 7383c266ef252ad70806f3072ee8e63d2a16d1e6bafa6146a2da867fc7c41759
+ 1701  ls -lrth
+ 1702  docker ps -a
+ 1703  docker ps
+ 1704  docker ps -a
+ 1705  docker run -d --name=Bravo-web1 -p 9092:80 kharatramesh/vadapavimages:pavbhaji
+ 1706  cat /etc/hosts
+ 1707  ps -a
+ 1708  docker ps -a
+ 1709  docker run -d --name=Bravo-web1 -p 9098:80 kharatramesh/vadapavimages:vadapav
+ 1710  docker run -d --name=Bravo-web1 -p 7092:80 kharatramesh/vadapavimages:
+ 1711  docker run -d --name=Bravo-web1 -p 7092:80 kharatramesh/vadapavimages:pavbhaji
+ 1712  docker ps -a |grep -i bravo
+ 1713  history
+ 1714  docker run -d --name=bravo-db1 2222:3305 -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1715  docker run -d --name=bravo-db1 9999:3305 -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1716  docker run -d --name=bravo-db1 9999:3306 -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1717  docker run -d --name=bravo-db1 -p 9999:3306 -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1718  docker ps -a
+ 1719  docker exec -it bravo-db1 bash
+ 1720  docker ps -a
+ 1721  cd
+ 1722  mkdir /charlie-db4
+ 1723  ls /charlie-db4/
+ 1724  ls -a
+ 1725  ls -lrth
+ 1726  cd /charlie-db4/
+ 1727  ls -lrth
+ 1728  dcoker run -d --name=charlie-db4 -v //charlie-db4:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -p 9999:3306 mysql
+ 1729  dcoker run -d --name=charlie-db4 -v /charlie-db4:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -p 9999:3306 mysql
+ 1730  docker run -d --name=charlie-db4 -v /charlie-db4:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -p 9999:3306 mysql
+ 1731  ls /charlie-db4/
+ 1732  ps -a
+ 1733  ls -lrth
+ 1734  cd /charlie-db4/
+ 1735  ls -lrth
+ 1736  ls -a
+ 1737  cd. ./
+ 1738  ls -a
+ 1739  cd ./
+ 1740  cd ../
+ 1741  la -a
+ 1742  cd charlie-db4/
+ 1743  ls -a
+ 1744  pwd
+ 1745  cd
+ 1746  ls -lrth
+ 1747  cd /
+ 1748  ls -lrth
+ 1749  cd charlie-db4/
+ 1750  ls -lrth
+ 1751  ls -a
+ 1752  ps -a
+ 1753  docker ps -a
+ 1754  ls -lrth
+ 1755  df -kh
+ 1756  history
+ 1757  docker volume create el
+ 1758  docker volume create pl
+ 1759  docker volume ls
+ 1760  docker run -d --name=trainer-p1 -v vadapav:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1761  docker volume ls
+ 1762  brctl show
+ 1763  docker network create --driver=bridge --subnet=90.90.1.1/24 e-netll
+ 1764  docker network create --driver=bridge --subnet=90.90.1.1/24 e-netl
+ 1765  docker network create --driver=bridge --subnet=90.90.0.0/24 e-netl
+ 1766  docker network create --driver=bridge --subnet=90.90.1.0/24 e-netl
+ 1767  docker network create --driver=bridge --subnet=90.90.5.0/24 e-netl
+ 1768  docker network create --driver=bridge --subnet=90.90.5.0/24 e-chand
+ 1769  brctl show
+ 1770  docker inspect e-chand
+ 1771  docker run -d --name=c7 --network-e-chand --ip=99.99.0.99 --hostname=dosa.samosa.com --memory=20M --cpus="0.0002" httpd
+ 1772  docker run -d --name=c7 --network-e-chand --ip=99.97.1.92 --hostname=dosa.samosa.com --memory=20M --cpus="0.0002" httpd
+ 1773  docker network create --driver=bridge -- subnet=90.91.1.1/24 e-chand
+ 1774  docker network create --driver=bridge -- subnet=90.90.0.0/24 e-chand
+ 1775  docker network create --driver=bridge -- subnet=90.90.1.1/24 e-chand
+ 1776  docker network create --driver=bridge --subnet=90.90.1.1/24 e-chand
+ 1777  docker network create --driver=bridge --subnet=90.90.2.1/24 e-chand
+ 1778  docker network create --driver=bridge --subnet=90.90.0.0/24 e-chand
+ 1779  docker network create --driver=bridge --subnet=90.90.0.0/24 e-chand1
+ 1780  docker run -d --name=c7 --network-e-chand --ip=99.97.1.92 --hostname=dosa.samosa.com --memory=20M --cpus="0.0002" httpd
+ 1781  docker run -d --name=c7 --network-e-chand --ip=90.90.0.0 --hostname=dosa.samosa.com --memory=20M --cpus="0.0002" httpd
+ 1782  docker network create --driver=bridge --subnet=90.90.2.7/24 e-chand2
+ 1783  docker network create --driver=bridge --subnet=100.0.2.7/24 e-chand2
+ 1784  docker network create --driver=bridge --subnet=100.0.0.0/24 e-chand5
+ 1785  docker network create --driver=bridge --subnet=100.0.0.1/24 e-chand5
+ 1786  docker network create --driver=bridge --subnet=100.0.0.1/24 e-chand8
+ 1787  docker network create --driver=bridge --subnet=100.1.1.1/24 e-chand8
+ 1788  docker network create --driver=bridge --subnet=100.0.0.1/24 e-chand5
+ 1789  mkdir /varsha_docker
+ 1790  touch 1.df 1.txt 2.txt index.html
+ 1791  ls -lrth
+ 1792  cd varsha_docker
+ 1793  cd /varsha_docker
+ 1794  vi 1.df
+ 1795  cat 1.df
+ 1796  docker build . -f 1.df -t mywebserver_varsha:v1.0
+ 1797  ls -lrth
+ 1798  tar -cvf 1.tar *
+ 1799  ls
+ 1800  docker build . -f 1.df -t mywebserver_varsha:v1.0
+ 1801  docker images
+ 1802  docker build . -f 1.df -t mywebserver_varsha:v1.0
+ 1803  vi 1.df
+ 1804  tar -cvf 1.tar *
+ 1805  ls
+ 1806  rm -f 1.tar
+ 1807  ls
+ 1808  cat 1.df
+ 1809  tar -cvf 1.tar *
+ 1810  docker build . -f 1.df -t mywebserver_varsha:v1.0
+ 1811  docker images
+ 1812  docker run -d --name Ashok-c4-web -p 9080:80 nginx
+ 1813  docker images
+ 1814  docker ps -a | grep -i Ashok
+ 1815  mkdir /Ashok-DB
+ 1816  ls -lrt
+ 1817  pwd
+ 1818  cd Ashok-DB
+ 1819  ~
+ 1820  pwd
+ 1821  exit
+ 1822  docker ps -a | grep -i Ashok
+ 1823  docker run -d --name=ashokdb -v /Ashok-DB:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -p 1908:3306 mysql
+ 1824  docker ps -a | grep -i Ashok
+ 1825  pwd
+ 1826  exit
+ 1827  mysql -u root -p
+ 1828  docker exec -it ashokdb bash
+ 1829  pwd
+ 1830  cd /
+ 1831  cd Ashok-DB/
+ 1832  ls -lrt
+ 1833  cd mydatabase/
+ 1834  ls -lrt
+ 1835  cd /
+ 1836  sudo -i
+ 1837  cd Ashok-DB/
+ 1838  ls -lrt
+ 1839  cd /var/lib/mysql
+ 1840  cd /var
+ 1841  cd lib/
+ 1842  ls -lrt
+ 1843  ls -lrt *sql*
+ 1844  ls -lrt *SQL*
+ 1845  cd docker/volumes/
+ 1846  ls -lrt
+ 1847  cd Ashok/
+ 1848  ls -lrt
+ 1849  cd _data/
+ 1850  ls -lrt
+ 1851  cd /
+ 1852  sudo docker run -d --name=trainer-ad -v Ashok-DB:/var/lib/mysql -c MYSQL_ROOT_PASSWORD=123 mysql
+ 1853  sudo docker run -d --name=trainer-ad -v /Ashok-DB:/var/lib/mysql -c MYSQL_ROOT_PASSWORD=123 mysql
+ 1854  sudo docker run -d --name=trainer-ad -v /Ashok-DB:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 mysql
+ 1855  docker exec -it trainer-ad bash
+ 1856  history
+
+
+
+
+
+
+=========================
+
+### Check the latest 5 result in repository
+
+$docker search httpd --limit=5 -f is-official=true
+$docker search nginx --limit=5 -f is-official=true
+$docker search mysql --limit=5 -f is-official=true
+$docker pull httpd
+$docker images
+
+### create containerd
+$ docker container create --name=Ashok-c1 httpd
+$ docker container create --name=Ashok-c1 nginx
+
+## Start the containet
+$ docker start Ashok-c1   ##container name is Ashok-c1
+
+$docker ps -a
+
+
+stopping container means status will be existed
+
+$docker stop Ashok-c1
+
+## delete the container (1st stop the container and then delete)
+
+$docker stop Ashok-c1
+$docker rm Ashok-c1
+
+## how to pause a container
+$docker ps 
+$docker pause Ashok-c1
+$docker ps
+
+
+## create and run command on single go 
+$docker run -d --name=Ashok-c5 httpd  ## here -d meand run the process in background
+
+$docker ps -a | grep -i Ashok-c1
+
+
+root@ip-172-31-40-23:~# docker ps -a | grep -i Ashok
+2fdbe20b641b   httpd     "httpd-foreground"       4 seconds ago    Up 3 seconds               80/tcp    Ashok-c5
+a62020ea14aa   nginx     "/docker-entrypoint.…"   10 minutes ago   Up About a minute          80/tcp    Ashok-c4
+40be1d7de77a   nginx     "/docker-entrypoint.…"   10 minutes ago   Up About a minute          80/tcp    Ashok-c3
+0eef393f31ef   httpd     "httpd-foreground"       11 minutes ago   Up About a minute          80/tcp    Ashok-c2
+34d0d9b40bf2   httpd     "httpd-foreground"       11 minutes ago   Up 6 minutes               80/tcp    Ashok-c1
+
+
+
+## how to check IP address of container
+$ docker inspect Ashok-c4 | grep -i ipaddr
+
+root@ip-172-31-40-23:~# docker inspect Ashok-c4 | grep -i ipaddr
+            "SecondaryIPAddresses": null,
+            "IPAddress": "172.17.0.7",
+                    "IPAddress": "172.17.0.7",
+
+## if it is application url then how could we check the ip
+
+$curl 172.17.0.7
+
+## CPU utilizatio and meomory utilization
+$docker stats Ashok-c1
+
+## check the logs of container
+$ docker logs Ashok-c1
+
+## Container using OS
+$cat /etc/os-release
+
+
+## installed
+
+$sudo apt update
+$apt update
+$apt install net-tools -You
+
+## acheck all the container name
+$docker ps -a -q
+
+## Remove all container at one shot
+$docker rm -f $(docker ps -a -q)
+
+
+## Remove the docker image
+$ docker image
+$docker <imagename>   ## dele through image name
+$docker <imageid>   ## delete through id
+
+## image location
+
+cd /var/lib/docker/image/overlay2/imagedb/content/sha256#
+
+## mapping port with your application
+docker run -d --name=Ashok1-web1 -p 9080:81 httpd
+
+
+
+
+install mysql DB on container and Access Database from outside
+
+$docker run -d --name=Ashokdb1 -p 1908:3306 
+
+
+
+## To check where data base file created
+
+$docker exec -it Ashokdb1
+$cd /var/lib/mysql
+
+
+
+## Mount the DB files from VM to out side the VM 
+
+To keep the data store out side from container to a persistent volume there is a concept VOLUME
+in this way we can map the DB file/ log file with external disk
+
+$mkdir /Ashok-DB1
+docker run -d --name=ashokdb1 -v /ashok-DB1:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -p 7777:3306 mysql
+
+
+
+### docker volume creation (docuker volume location /var/lib/docker/volume)
+
+$docker volume create e1
+$docker volume ls
+
+
+There is 2 types of volume creation1: 
+Bind Mount  --> mount to exnal directories
+VOLUME  >  Store inside Docker volume
+Temp purpose
+
+
+
+
+============================
+
+$brctl show  ##
+$ip a s
+
+$docker inspect cont1 | grep -i ipadd
+
+
+
+## create a bridge
+
+$docker network create --driver=bridge --subnet=90.90.0.0/24 e-netl
+
+$brctl show
+
+## create a container on new bridge
+$docker run -d --name=cont2 --network=e-net1 --ip=90.90.0.0 --hostname=dosa.samosa.com --memory=20M --cpus="0.0001" httpd
+
+--- Show all networks
+$docker network ls  
+
+$docker inspect cont2 | grep -i ipadd
+
+
+
+==== redirect yaml file
+kubectl create deployment d2 --image=httpd -n ashok --dry-run=client -o yaml > d2.yaml
+
+
+
+
+

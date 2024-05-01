@@ -1,0 +1,67 @@
+Java Project --- 2 to 4 microservices (Frontend/Backend/database) --
+Build and deploy multiple microservices using Azure Devops with all stages --
+Repo/Provisoning infra using terraform/Build/ACR/Creating containers/Testing/CodeReview/Deploying on k8s Cluster 
+using Blue/Green deployment Strategy
+==============================
+
+Containerise
+Microservices
+Security to microservices
+Provisioning/configuration of infrastructure (Application Benchmarking)
+CPU
+RAM
+Bandwidth
+Disk
+Software
+Code Repositories(Version controlled)
+Defining Build tools
+Testing (Automation Test tools)
+functional testing
+Code scanning / Review
+stress/load testing
+VA/PT
+monitoring (application/infrastructure/Container)
+Microservices Monitoring (Service mesh)
+backup and restoration process
+DR (pipeline | infrastructure)
+maintainance activiities (patching/upgradation- Regression testing)
+Rollout new version of application(Blue/Green)
+Rollback to older version of application
+Project management tool
+Cost Estimation
+ROI
+operational efficiency
+Licences
+Secret rotations
+MIgration path
+Audits
+decomissioning
+Pipeline tool selection
+Artifacts repository tool
+Know error database
+Troubleshooting
+Do's and Don'ts
+Seelction of cloud service provider/ON-premises
+Multi-tenancy approach
+Integration with various cloud 
+INtegration users from various domains
+========================================================
+
+1. New requirement --  Dockerfile -- Images -- Containers (Automate)
+    Bare Metal machine
+        can't containerise
+          plan the retirement
+          start from scratch  -- Dockerfile-Images-Containers
+Refactor -- Modify the code as per requirement -- Dockerfile -- images- containers
+2. Virtual machine --
+  can't containerise
+  plan the retirement
+  start from scratch -- Dockerfile-Images-Containers
+  move VM as container in k8s
+  Refactor -- Modify the code as per requirement -- Dockerfile -- images- containers
+3. Containers
+  move containers as it is
+  data (Internal Volume / External Volume)
+  COnfiguration
+
+===================================================

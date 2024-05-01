@@ -1,0 +1,61 @@
+-- create db container with backup file
+--how to check which bridge interface mapping with which container
+--create bridge and create container with this bridge
+---create docker form for image creation
+--copy project from github to aws container and build application on container
+--post build application copy the container image that should not copy the source code
+
+git clone https://github.com/kharatramesh/bosch.git
+
+
+
+
+------------------------------
+
+
+
+root@ip-172-31-40-23:/# docker network create --driver=bridge --subnet=20.20.0.0/24 e-net12
+24bd394783617e93ef3199ec4795f115530ab75a2a7c9b83bc01461a1adae079
+
+
+root@ip-172-31-40-23:/# sudo docker run -d --name=cont18 --network=e-net12 --ip=20.20.0.0 --hostname=appleorange1234.com --memory=20M --cpus="0.0001" httpd
+373e0c2f7ecda264b4c192701760341979845ca2fca95da3febaa7295ac45dab
+docker: Error response from daemon: Address already in use.
+
+
+root@ip-172-31-40-23:/# docker network create --driver=bridge --subnet=20.20.0.0/24 e-net15
+24bd394783617e93ef3199ec4795f115530ab75a2a7c9b83bc01461a1adae079
+
+
+root@ip-172-31-40-23:/# sudo docker run -d --name=cont19 --network=e-net15 --ip=30.30.0.0 --hostname=appleorange12.com --memory=20M --cpus="0.0001" httpd
+7a17d73c180847f7dd258e1d3e8c105c4ac2df9c0565a144644db66c66618721
+docker: Error response from daemon: Address already in use.
+
+
+
+
+
+---Day2--
+
+
+Kubernets
+advantage of kubernetes
+install kubernetes
+create/deleete pod 
+create container inside pod
+create auto self heal
+create deployment pod
+create yaml file
+create yaml file from pod decsribe
+create yaml file from image
+ceate yaml file for pod deployment
+
+create load balancer
+mapping load balance with DNS
+access application through load balancer
+create ingress lb
+access ingress lb from outside to access application
+create multi container inside pod
+restore and rebuild
+
+

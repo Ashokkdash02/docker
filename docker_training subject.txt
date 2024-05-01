@@ -1,0 +1,184 @@
+https://www.surveymonkey.com/r/M9DLLYP  pre test
+https://www.surveymonkey.com/r/M9yk6ND  --first day feed back
+
+
+https://docs.docker.com/manuals   ---Docker install side
+
+https://github.com/kharatramesh/misalpav/blob/main/ericsson/pre-test.txt
+
+https://docs.docker.com/engine/install/ubuntu/
+
+https://hub.docker.com/_/httpd
+
+
+
+
+DAY-1 -- 29/04/2024 
+
+1: create linux virtual machine on AWS
+2: Install docker image on linux VM
+3: Access the VM through putty from out side
+4: Create container with diffrent App
+5: Start container
+6:stop container
+7: Pause/unpause container
+8: Delete Container
+9:Show all container in VM
+10: delete all container in one go
+11: Create Container to MYSQL DB
+12: Connect DB container through Mysql Work bench
+13: Create DB, Table 
+14: Check logs of container 
+--- Volume Concept--
+15: How to map DB file and log file with external folder in case container delete and we can save data
+16: Mapp data in side docker volume
+
+17: network
+create bridge
+create docker with the new bridhe in same network
+
+18: Docker file creation
+19: docker image creation with docker file
+20: push image on repositry
+
+
+
+
+
+Install using the apt repository
+
+
+1: Set up Docker's apt repository.
+
+
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+
+
+2: Install the Docker packages.
+
+ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+ 
+ 
+3: Verify that the Docker Engine installation is successful by running the
+
+$ sudo docker run hello-world
+
+
+
+
+---Day2--
+
+
+Kubernets
+advantage of kubernetes
+install kubernetes
+create/deleete pod 
+create container inside pod
+create auto self heal
+create deployment pod
+create yaml file
+create yaml file from pod decsribe
+create yaml file from image
+ceate yaml file for pod deployment
+
+create load balancer
+mapping load balance with DNS
+access application through load balancer
+create ingress lb
+access ingress lb from outside to access application
+create multi container inside pod
+restore and rebuild
+
+
+
+==== Day 3
+
+image from redhat site to create container
+registry.access.redhat.com/ubi9/httpd-24:1-321
+ 
+ kind: ResourceQuota
+apiVersion: v1
+metadata:
+  name: example
+  namespace: ashok
+  uid: 392842f2-de45-4e4e-bf4e-69f6b89ce89b
+  resourceVersion: '82015'
+  creationTimestamp: '2024-05-01T09:23:45Z'
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: v1
+      time: '2024-05-01T09:23:45Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:hard':
+            .: {}
+            'f:limits.cpu': {}
+            'f:limits.memory': {}
+            'f:pods': {}
+            'f:requests.cpu': {}
+            'f:requests.memory': {}
+    - manager: cluster-policy-controller
+      operation: Update
+      apiVersion: v1
+      time: '2024-05-01T09:23:45Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:hard':
+            .: {}
+            'f:limits.cpu': {}
+            'f:limits.memory': {}
+            'f:pods': {}
+            'f:requests.cpu': {}
+            'f:requests.memory': {}
+      subresource: status
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2024-05-01T09:23:45Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:used':
+            .: {}
+            'f:limits.cpu': {}
+            'f:limits.memory': {}
+            'f:pods': {}
+            'f:requests.cpu': {}
+            'f:requests.memory': {}
+      subresource: status
+spec:
+  hard:
+    limits.cpu: '2'
+    limits.memory: 2Gi
+    pods: '4'
+    requests.cpu: '1'
+    requests.memory: 1Gi
+status:
+  hard:
+    limits.cpu: '2'
+    limits.memory: 2Gi
+    pods: '4'
+    requests.cpu: '1'
+    requests.memory: 1Gi
+  used:
+    limits.cpu: '0'
+    limits.memory: '0'
+    pods: '6'
+    requests.cpu: '0'
+    requests.memory: '0'
